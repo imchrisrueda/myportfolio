@@ -81,7 +81,9 @@ body.dark {
 
 h1, h2, h3 {
   color: var(--color-accent);
+  font-size:x-large;
   margin-bottom: 1rem;
+  text-align: center;
 }
 
 /* HEADER */
@@ -246,7 +248,7 @@ color: #0097a7;
 
 
 /* PROYECTOS */
-.project {
+/* .project {
   background-color: rgba(0,0,0,0.03);
   padding: 1rem;
   border-radius: 0.5rem;
@@ -256,17 +258,109 @@ color: #0097a7;
 
 body.dark .project {
   background-color: rgba(255,255,255,0.05);
+} */
+
+/* Contenedor padre */
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0 0.5rem;
 }
+
+/* Tarjeta de proyecto individual */
+.project {
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: background-color var(--transition-speed), box-shadow 0.3s ease;
+}
+
+body.dark .project {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 1px 3px rgba(255,255,255,0.05);
+}
+
+.project img {
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.project h3 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.project p {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.project p.tech {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+body.dark .project p.tech {
+  color: #9ca3af;
+}
+
+.tech-icons {
+  display:flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  justify-content: center;
+}
+
+.tech-icons img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.project a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}
+
+
 
 /* PUBLICACIONES */
-.publications {
-  list-style-type: none;
-  padding: 0;
+.articulo {
+  background-color: rgba(0,0,0,0.03);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  transition: background-color var(--transition-speed);
 }
 
-.publications li {
-  margin-bottom: 1rem;
+body.dark .articulo {
+  background-color: rgba(255,255,255,0.05);
 }
+
+.articulo-titulo {
+  color: inherit;
+  font-size: 1.25rem; /* similar a text-xl */
+  font-weight: 600;   /* similar a font-semibold */
+  transition: color 0.3s ease;
+}
+
+.articulo-titulo:hover {
+  color: var(--color-accent);
+}
+
 
 /* CONTACTO */
 #contacto ul {
