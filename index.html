@@ -19,9 +19,10 @@
     </div>
       <nav class="nav-links">
       <a href="#perfil">Profile</a>
+      <a href="#experiencia">Experience</a>
       <a href="#proyectos">Projects</a>
-      <a href="#publicaciones">Publicaciones</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#publicaciones">Dissemination</a>
+      <a href="#contacto">Contact</a>
     </nav>
     <button class="theme-toggle" aria-label="Cambiar tema"></button>
   </header>
@@ -44,16 +45,43 @@
       </div>
     </section>
 
+    <section id="experiencia" class="section">
+      <div class="container" style="display: flex; flex-direction: column; align-items: center;">
+
+    </section>
+
     <section id="proyectos" class="section">
       <div class="container">
-        <h2>Proyectos Destacados</h2>
-        <div class="project">
-          <h3>Clasificador de Malezas con Drones</h3>
-          <p>Modelo de visión por computadora entrenado con imágenes multiespectrales captadas por drones para identificar especies de malezas en cultivos extensivos. Implementado con PyTorch y desplegado vía Flask.</p>
-        </div>
-        <div class="project">
-          <h3>Dashboard Predictivo de Demanda Energética</h3>
-          <p>Aplicación interactiva desarrollada en Dash para visualizar proyecciones de consumo eléctrico en tiempo real. Usa modelos LSTM y datos climáticos como variables exógenas.</p>
+        <h2>Publicaciones</h2>
+        <div class="projects">
+
+          <!-- Proyecto 1 -->
+          <div class="project">
+            <img src="assets/img/Agronomy-banner.png" alt="Proyecto 1">
+            <h3>Clasificador de Imágenes de Plantas</h3>
+            <p>Aplicación web que permite identificar especies de plantas a partir de imágenes usando redes neuronales convolucionales entrenadas con un dataset personalizado.</p>
+            <p class="tech">Tecnologías: TensorFlow, Keras, OpenCV, Python, Streamlit</p>
+            <div class="tech-icons">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV">
+            </div>
+            <a href="https://github.com/usuario/proyecto1" target="_blank">Ver en GitHub</a>
+          </div>
+
+          <!-- Proyecto 2 -->
+          <div class="project">
+            <img src="assets/img/Agronomy-banner.png" alt="Proyecto 2">
+            <h3>Dashboard Interactivo de Análisis</h3>
+            <p>Plataforma de análisis económico con visualizaciones dinámicas conectadas a una base de datos PostgreSQL y backend en Node.js.</p>
+            <p class="tech">Tecnologías: React, Chart.js, PostgreSQL, Node.js</p>
+            <div class="tech-icons">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+            </div>
+            <a href="https://github.com/usuario/proyecto2" target="_blank">Ver en GitHub</a>
+          </div>
         </div>
       </div>
     </section>
@@ -61,16 +89,66 @@
     <section id="publicaciones" class="section">
       <div class="container">
         <h2>Publicaciones</h2>
-        <ul class="publications">
-          <li>
-            <strong>"Optimización de cultivos usando modelos de predicción climática"</strong><br>
-            Revista de Agricultura Inteligente, 2024.
-          </li>
-          <li>
-            <strong>"Deep Learning para detección temprana de enfermedades en plantas"</strong><br>
-            Congreso Internacional de Visión Artificial, 2023.
-          </li>
-        </ul>
+        <!-- Publications -->
+        <div id="articulos">
+          <div class="articulo" 
+               data-title="Machine Learning-Powered Segmentation of Forage Crops in RGB Imagery Through Artificial Sward Images" 
+               data-published="Agronomy, 2025" 
+               data-summary="This study evaluated machine learning methods for segmenting forage crops in RGB images, using artificial sward images to train models and achieving accurate quantification of plant coverage in different growth stages." 
+               data-link="https://www.mdpi.com/2073-4395/15/2/356">
+          </div>
+        
+          <div class="articulo" 
+               data-title="DIGINVASIVE: Sistema de Alerta y Control de especies invasoras. Caso de estudio: Amaranthus palmeri" 
+               data-published="Revista de Ciências Agrárias, 2024" 
+               data-summary="The DIGINVASIVE project created a digital tool for mapping and monitoring the invasive weed Amaranthus palmeri in agricultural fields, using drone imagery and AI for effective control." 
+               data-link="https://revistas.rcaap.pt/rca/article/view/34978/24655">
+          </div>
+        
+          <div class="articulo" 
+               data-title="Diseño de un sistema de control de prótesis transfemoral basado en redes neuronales" 
+               data-published="Revista Mutis, 2023" 
+               data-summary="Researchers designed a control system for a transfemoral prosthesis using a neural network, interpreting muscle signals for more intuitive control, with a 20% error rate in predicting leg movements." 
+               data-link="https://revistas.utadeo.edu.co/index.php/mutis/article/view/diseno-sistema-control-protesis-transfemoral">
+          </div>
+        
+          <div class="articulo" 
+               data-title="Diseño de un brazo robótico asistencial para personas con discapacidad" 
+               data-published="Avances y desafíos en las ciencias y la ingeniería 2023: nuevos conocimientos para un futuro sostenible, 2023" 
+               data-summary="A study focused on designing assistive robotic arms for people with disabilities, exploring EEG-based control, 3D-printed designs, and robotic assistance in speech therapy." 
+               data-link="https://www.researchgate.net/profile/Fabio-Meneses/publication/373761392_Avances_y_desafios_en_las_ciencias_y_la_ingenieria_nuevos_conocimientos_para_un_futuro_sostenible/links/6525e4650d999b4754b4d0e1/Avances-y-desafios-en-las-ciencias-y-la-ingenieria-nuevos-conocimientos-para-un-futuro-sostenible.pdf#page=105">
+          </div>
+        
+          <div class="articulo" 
+               data-title="Diseño mecánico de una prótesis transfemoral" 
+               data-published="Avances y desafíos en las ciencias y la ingeniería 2023: nuevos conocimientos para un futuro sostenible, 2023" 
+               data-summary="This paper detailed the mechanical design of a transfemoral prosthesis, covering component selection, material considerations, and anthropometric data for a custom fit." 
+               data-link="https://www.researchgate.net/profile/Hector-Rojas-14/publication/373762565_Bioeconomia_y_desarrollo_territorial_en_Narino_Tolima_Guajira_y_Bogota-Region_aproximacion_desde_la_triple_helice/links/653f0c253cc79d48c5ba020e/Bioeconomia-y-desarrollo-territorial-en-Narino-Tolima-Guajira-y-Bogota-Region-aproximacion-desde-la-triple-helice.pdf#page=122">
+          </div>
+        
+          <div class="articulo" 
+               data-title="ANÁLISIS COMPARATIVO DE ALGORITMOS DE EVASIÓN DE OBSTÁCULOS APLICADOS A UN ROBOT MÓVIL DIFERENCIAL" 
+               data-published="ИНФОРМАЦИОННЫЕ ТЕХНОЛОГИИ, СИСТЕМНЫЙ АНАЛИЗ И УПРАВЛЕНИЕ (ИТСАУ-2021), 2021" 
+               data-summary="This research compared reinforcement learning (Q-learning) with a Braitenberg-inspired algorithm for obstacle avoidance in a differential mobile robot, showing Q-learning's effectiveness without expert-designed strategies." 
+               data-link="https://www.elibrary.ru/item.asp?id=48597944">
+          </div>
+        
+          <div class="articulo" 
+               data-title="Accurate segmentation of grass-sward structures in RGB images using machine learning algorithms" 
+               data-published="Precision agriculture'19, 2019" 
+               data-summary="This study developed an automated tool for accurately segmenting complex grass structures (green leaves, straw, bare soil) in RGB images using machine learning, achieving good classification results with Gaussian Mixture Models and color space transformations." 
+               data-link="https://brill.com/edcollchap/book/9789086868889/BP000088.xml">
+          </div>
+        
+          <div class="articulo" 
+               data-title="Novel systems for pasture characterization using RGB-D cameras and UAV-imagery." 
+               data-published="AgEng conference, 2018" 
+               data-summary="Researchers evaluated UAV and RGB-D camera systems for pasture characterization, finding both effective for estimating plant height and biomass, with UAVs offering wider coverage and RGB-D providing more detail." 
+               data-link="https://www.cabidigitallibrary.org/doi/full/10.5555/20210291956">
+          </div>
+
+          <!-- Agrega más artículos aquí -->
+        </div>
       </div>
     </section>
 
