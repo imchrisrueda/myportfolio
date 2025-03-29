@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
 </head>
 <body>
   <header class="site-header">
@@ -30,9 +34,11 @@
   <main>
     <section id="perfil" class="section">
       <div class="container" style="display: flex; flex-direction: column; align-items: center;">
-        <img src="assets/img/f_perfil.jpg" alt="Foto de perfil">
+        <img src="assets/img/perfil_rec.jpg" alt="Foto de perfil">
         <h1>Christian Rueda-Ayala</h1>
         <h2>Mechatronics Engineer - AI & Data Science Enthusiast</h2>
+        <project_actual>Now, working on DigitalWeeds! AI-powered tools for precise invasive weed management, reducing herbicides and boosting farm profitability. 
+          Leveraging drone and mobile imagery to revolutionize plant health.</project_actual>
         <blockquote>
           "I'm a passionate problem-solver, leveraging innovative technology to overcome challenges. My driving force is continuous learning and building robust solutions."
         </blockquote>
@@ -45,14 +51,135 @@
       </div>
     </section>
 
-    <section id="experiencia" class="section">
+    <!-- <section id="experiencia" class="section">
       <div class="container" style="display: flex; flex-direction: column; align-items: center;">
 
-    </section>
+    </section> -->
+    <section id="experiencia" class="section">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="tabs">
+          <button id="tab-academic" class="tab-button active-tab">
+            <i class="fas fa-graduation-cap"></i> Academic
+          </button>
+          <button id="tab-professional" class="tab-button">
+            <i class="fas fa-briefcase"></i> Professional
+          </button>
+        </div>
+    
+        <!-- Academic Timeline -->
+        <div id="academic-timeline" class="timeline-zigzag timeline active">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/uco.png" alt="UCO Logo">
+              <h3>PhD(c) in Agricultural Engineering</h3>
+              <p class="institution">University of Córdoba</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2024 – 2028</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/upm.png" alt="UPM Logo">
+              <h3>MSc in Robotics & Automation</h3>
+              <p class="institution">Polytechnic University of Madrid</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2017 – 2018</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/ute.png" alt="UTE Logo">
+              <h3>Bachelor in Mechatronics Engineering</h3>
+              <p class="institution">Equinoccial Technological University</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2011 – 2016</p>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Professional Timeline -->
+        <div id="professional-timeline" class="timeline-zigzag timeline">
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/inia.png"  alt="INIA Logo">
+              <h3>Momentum's Program Researcher</h3>
+              <p class="institution">INIA-CSIC</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2024 – Present</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/puce.png" alt="PUCE Logo">
+              <h3>Guest Lecturer - Data Science Master's</h3>
+              <p class="institution">PUCE</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2023 – Present</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/uide.png" alt="UIDE Logo">
+              <h3>Lecturer - Mechatronics Engineering</h3>
+              <p class="institution">International University of Ecuador</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2023 – 2025</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/ute.png" alt="UTE Logo">
+              <h3>Lecturer - Mechatronics Engineering</h3>
+              <p class="institution">UTE University</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2018 – 2023</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/nibio.png" alt="NIBIO Logo">
+              <h3>Research Collaborator</h3>
+              <p class="institution">Norwegian Institute of Bioeconomy (NIBIO)</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2019 – 2020</p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-content">
+              <img src="assets/img/car.png" alt="CAR Logo">
+              <h3>Assistant Researcher</h3>
+              <p class="institution">Automation and Robotics Center (CAR-CSIC)</p>
+              <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2017 – 2018</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+            <p>Python</p>
+          </div>
+          <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+            <p>TensorFlow</p>
+          </div>
+          <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+            <p>React</p>
+          </div>
+          <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+            <p>Node.js</p>
+          </div>
+          <div class="skill">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+            <p>PostgreSQL</p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <h2>Certificates</h2>
 
+    </section>
+               
     <section id="proyectos" class="section">
       <div class="container">
-        <h2>Publicaciones</h2>
+        <h2>Projects</h2>
         <div class="projects">
 
           <!-- Proyecto 1 -->
@@ -88,7 +215,7 @@
 
     <section id="publicaciones" class="section">
       <div class="container">
-        <h2>Publicaciones</h2>
+        <h2>Dissemination</h2>
         <!-- Publications -->
         <div id="articulos">
           <div class="articulo" 
@@ -98,7 +225,7 @@
                data-link="https://www.mdpi.com/2073-4395/15/2/356">
           </div>
         
-          <div class="articulo" 
+          <!-- <div class="articulo" 
                data-title="DIGINVASIVE: Sistema de Alerta y Control de especies invasoras. Caso de estudio: Amaranthus palmeri" 
                data-published="Revista de Ciências Agrárias, 2024" 
                data-summary="The DIGINVASIVE project created a digital tool for mapping and monitoring the invasive weed Amaranthus palmeri in agricultural fields, using drone imagery and AI for effective control." 
@@ -145,7 +272,7 @@
                data-published="AgEng conference, 2018" 
                data-summary="Researchers evaluated UAV and RGB-D camera systems for pasture characterization, finding both effective for estimating plant height and biomass, with UAVs offering wider coverage and RGB-D providing more detail." 
                data-link="https://www.cabidigitallibrary.org/doi/full/10.5555/20210291956">
-          </div>
+          </div> -->
 
           <!-- Agrega más artículos aquí -->
         </div>
@@ -154,8 +281,8 @@
 
     <section id="contacto" class="section">
       <div class="container">
-        <h2>Contacto</h2>
-        <p>¿Interesado en colaborar o contratar mis servicios? Puedes escribirme a <a href="mailto:tunombre@email.com">tunombre@email.com</a> o encontrarme en redes:</p>
+        <h2>Contact</h2>
+        <p>¿Interesado en colaborar o contratar mis servicios? Puedes escribirme a <a href="mailto:christian.rueda@csic.es">christian.rueda@csic.es</a> o encontrarme en redes:</p>
         <ul>
           <li><a href="#">LinkedIn</a></li>
           <li><a href="#">GitHub</a></li>
@@ -166,7 +293,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>© 2025 Desarrollado por Tu Nombre | IA & Data Science</p>
+    <p>© 2025 Developed by Christian Rueda-Ayala</p>
     <div class="social-links">
       <a href="#">LinkedIn</a>
       <a href="#">GitHub</a>

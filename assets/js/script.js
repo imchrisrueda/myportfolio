@@ -75,3 +75,26 @@ function renderArticulos(selector = '#articulos') {
   
   });
 }
+// Timeline tabs toggle
+document.addEventListener('DOMContentLoaded', () => {
+  const academicBtn = document.getElementById('tab-academic');
+  const professionalBtn = document.getElementById('tab-professional');
+  const academicTimeline = document.getElementById('academic-timeline');
+  const professionalTimeline = document.getElementById('professional-timeline');
+
+  academicBtn.addEventListener('click', () => {
+    academicBtn.classList.add('active-tab');
+    professionalBtn.classList.remove('active-tab');
+    academicTimeline.classList.add('active');
+    professionalTimeline.classList.remove('active');
+  });
+
+  professionalBtn.addEventListener('click', () => {
+    professionalBtn.classList.add('active-tab');
+    academicBtn.classList.remove('active-tab');
+    professionalTimeline.classList.add('active');
+    academicTimeline.classList.remove('active');
+  });
+});
+
+

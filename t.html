@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience Timeline</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    #experiencia {
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    #experiencia .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    #experiencia h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #1d4ed8;
+      margin-bottom: 2rem;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      background: none;
+      border: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #4b5563;
+      padding: 0.5rem 1rem;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .tab-button.active-tab {
+      color: #1d4ed8;
+      border-color: #1d4ed8;
+    }
+
+    .timeline-zigzag {
+      position: relative;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .timeline-zigzag::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      background-color: #1d4ed8;
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 100%;
+      max-width: 1000px;
+      padding: 2rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+      text-align: left;
+    }
+
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+      text-align: right;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #1d4ed8;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+
+    .timeline-content {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      text-align: center;
+      z-index: 2;
+      max-width: 420px;
+    }
+
+    .timeline-content img {
+      display: block;
+      margin: 0 auto 0.5rem;
+      max-width: 64px;
+      max-height: 64px;
+      object-fit: contain;
+    }
+
+    .timeline-content h3 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #1d4ed8;
+    }
+
+    .timeline-content .institution {
+      font-size: 1rem;
+      color: #374151;
+    }
+
+    .timeline-content .timeline-date {
+      font-size: 0.9rem;
+      color: #6b7280;
+    }
+
+    .timeline {
+      display: none;
+    }
+
+    .timeline.active {
+      display: block;
+    }
+
+    @media screen and (max-width: 768px) {
+      .timeline-zigzag::before {
+        left: 10px;
+      }
+
+      .timeline-item {
+        flex-direction: column !important;
+        align-items: flex-start;
+        text-align: left !important;
+        padding-left: 2rem;
+      }
+
+      .timeline-item::before {
+        left: 0;
+        transform: translateY(-50%);
+      }
+
+      .timeline-content {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section id="experiencia">
+  <div class="container">
+    <h2>Experience</h2>
+    <div class="tabs">
+      <button id="tab-academic" class="tab-button active-tab">
+        <i class="fas fa-graduation-cap"></i> Academic
+      </button>
+      <button id="tab-professional" class="tab-button">
+        <i class="fas fa-briefcase"></i> Professional
+      </button>
+    </div>
+
+    <div id="academic-timeline" class="timeline-zigzag timeline active">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/University_of_Cordoba.svg/120px-University_of_Cordoba.svg.png" alt="UCO Logo">
+          <h3>PhD(c) in Agricultural Engineering</h3>
+          <p class="institution">University of Córdoba</p>
+          <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2024 – 2028</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Logo_UPM.png" alt="UPM Logo">
+          <h3>MSc in Robotics & Automation</h3>
+          <p class="institution">Polytechnic University of Madrid</p>
+          <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2017 – 2018</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/UTE_Logo.svg" alt="UTE Logo">
+          <h3>Bachelor in Mechatronics Engineering</h3>
+          <p class="institution">Equinoccial Technological University</p>
+          <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2011 – 2016</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="professional-timeline" class="timeline-zigzag timeline">
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <img src="https://www.inia.es/sites/default/files/logo-inia_0.png" alt="INIA Logo">
+          <h3>Momentum's Program Researcher</h3>
+          <p class="institution">INIA-CSIC</p>
+          <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2024 – Present</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/d/df/Pontificia_Universidad_Cat%C3%B3lica_del_Ecuador_logo.png" alt="PUCE Logo">
+          <h3>Guest Lecturer - Data Science Master's</h3>
+          <p class="institution">PUCE</p>
+          <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2023 – Present</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-content">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Logo_UTE_Universidad.png" alt="UTE Logo">
+          <h3>Lecturer - Mechatronics Engineering</h3>
+          <p class="institution">UTE University</p>
+          <p class="timeline-date"><i class="fas fa-calendar-alt"></i> 2018 – 2023</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const academicBtn = document.getElementById('tab-academic');
+    const professionalBtn = document.getElementById('tab-professional');
+    const academicTimeline = document.getElementById('academic-timeline');
+    const professionalTimeline = document.getElementById('professional-timeline');
+
+    academicBtn.addEventListener('click', () => {
+      academicBtn.classList.add('active-tab');
+      professionalBtn.classList.remove('active-tab');
+      academicTimeline.classList.add('active');
+      professionalTimeline.classList.remove('active');
+    });
+
+    professionalBtn.addEventListener('click', () => {
+      professionalBtn.classList.add('active-tab');
+      academicBtn.classList.remove('active-tab');
+      professionalTimeline.classList.add('active');
+      academicTimeline.classList.remove('active');
+    });
+  });
+</script>
+
+</body>
+</html>
