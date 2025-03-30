@@ -1,0 +1,75 @@
+/* Contenedor padre */
+.projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* Tarjeta de proyecto individual */
+.project {
+  width: 300px;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: background-color var(--transition-speed), box-shadow 0.3s ease;
+}
+
+body.dark .project {
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 1px 3px rgba(255,255,255,0.05);
+}
+
+.project img {
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  width: 100%;
+}
+
+.project h3 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.project p {
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
+.project p.tech {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+body.dark .project p.tech {
+  color: #9ca3af;
+}
+
+.tech-icons {
+  display:flex;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  justify-content: center;
+}
+
+.tech-icons img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.project a {
+  color: var(--color-accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}
+

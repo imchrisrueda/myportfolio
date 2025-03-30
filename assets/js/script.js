@@ -97,4 +97,47 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+//Certificados
+const track = document.getElementById("carouselTrack");
+const items = document.querySelectorAll(".carousel-item");
+const clone = [...items].map(item => item.cloneNode(true));
+clone.forEach(item => track.appendChild(item));
 
+
+const container = document.querySelector(".carousel-container");
+
+let isPaused = false;
+
+function pauseAnimation() {
+  track.style.animationPlayState = "paused";
+  isPaused = true;
+}
+
+function resumeAnimation() {
+  track.style.animationPlayState = "running";
+  isPaused = false;
+}
+
+container.addEventListener('mouseenter', pauseAnimation);
+container.addEventListener('mouseleave', resumeAnimation);
+
+//Skills
+document.querySelectorAll('.skill-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const content = header.nextElementSibling;
+    const arrow = header.querySelector('.arrow');
+
+    // Mostrar u ocultar contenido
+    content.classList.toggle('hidden');
+    content.classList.toggle('visible');
+    arrow.classList.toggle('rotate-180');
+
+    // Resetear barra si se oculta
+    if (!content.classList.contains('visible')) {
+      const skillBars = content.querySelectorAll('.skill-bar-fill');
+      skillBars.forEach(bar => {
+        bar.style.width = '0';
+      });
+    }
+  });
+});

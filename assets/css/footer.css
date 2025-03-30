@@ -1,0 +1,25 @@
+/* FOOTER */
+.site-footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-footer-bg-light);
+  transition: background-color var(--transition-speed);
+}
+
+body.dark .site-footer {
+  background-color: var(--color-footer-bg-dark);
+}
+
+.site-footer p {
+  margin: 0.5rem 0;
+}
+
+.social-links a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+.social-links a:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,64 @@
+
+#certificaciones {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+#certificaciones h2 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--color-accent);
+}
+
+.carousel-container {
+  overflow: hidden;
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  animation: scrollCarousel 20s linear infinite;
+}
+
+@keyframes scrollCarousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.carousel-item {
+  width: 200px;
+  height: 200px;
+  margin: 0 0.75rem;
+  flex-shrink: 0;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: var(--color-bg-light);
+  padding: 0.5rem;
+  border-radius: 12px;
+}
+.carousel-item a {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.carousel-item a:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+body.dark .carousel-item img {
+  background-color: var(--color-bg-dark);
+}
+
+
+

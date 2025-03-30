@@ -1,0 +1,17 @@
+/* CONTACTO */
+#contacto ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+#contacto a {
+  text-decoration: none;
+  color: var(--color-accent);
+}
+
+#contacto a:hover {
+  text-decoration: underline;
+}

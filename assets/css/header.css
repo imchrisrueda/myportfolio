@@ -1,0 +1,88 @@
+.site-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(var(--blur));
+    background-color: var(--header-bg-light);
+    color: var(--header-text-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    z-index: 1000;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+  }
+  
+  body.dark .site-header {
+    background-color: var(--header-bg-dark);
+    color: var(--header-text-dark);
+  }
+  
+  .logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--color-accent);
+  }
+  
+  .logo img {
+    width: 32px;
+    height: 32px;
+    transition: filter 0.3s ease;
+  }
+  
+  body.dark .logo img {
+    filter: invert(1);
+  }
+  
+  .logo:hover {
+    opacity: 0.8;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+  }
+  
+  
+  .nav-links a {
+    position: relative;
+    margin-left: 1rem;
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-speed), background-color var(--transition-speed);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+  }
+  
+  .nav-links a:hover,
+  .nav-links a.active {
+    background-color: var(--nav-active-bg);
+    font-weight: bold;
+    color: var(--color-accent);
+  }
+  
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--nav-active-line);
+    transition: width 0.3s ease-in-out;
+  }
+  
+  .nav-links a:hover::after,
+  .nav-links a.active::after {
+    width: 100%;
+  }
+  
+  .theme-toggle {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: transparent;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 000 18 9 9 0 000-18zM2 12a10 10 0 1110 10A10 10 0 012 12z"/></svg>');
+    cursor: pointer;
+  }
+  
+  body.dark .theme-toggle {
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23fff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3a9 9 0 000 18 9 9 0 000-18zM2 12a10 10 0 1110 10A10 10 0 012 12z"/></svg>');
+  }
