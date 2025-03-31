@@ -1,0 +1,55 @@
+.dafo-section {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .dafo-title {
+    text-align: center;
+    font-size: 2.3rem;
+    color: var(--color-accent);
+    margin-bottom: 2rem;
+  }
+  
+  .dafo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  
+  .dafo-box {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    transition: background-color 0.3s ease;
+    background-color: rgba(0,0,0,0.03);
+    color: var(--color-text-light);
+  }
+  
+  body.dark .dafo-box {
+    background-color: rgba(255,255,255,0.05);
+    color: var(--color-text-dark);
+  }
+  
+  .dafo-box h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: var(--color-accent);
+  }
+  
+  .dafo-box ul {
+    list-style: disc inside;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  /* Opcional: colores específicos por tipo */
+  .strengths { border-left: 6px solid #10b981; }
+  .weaknesses { border-left: 6px solid #ef4444; }
+  .opportunities { border-left: 6px solid #3b82f6; }
+  .threats { border-left: 6px solid #f59e0b; }
+  

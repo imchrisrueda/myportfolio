@@ -138,6 +138,36 @@ document.querySelectorAll('.skill-header').forEach(header => {
   });
 });
 
+//Proyectos
+
+const swiper = new Swiper('.destacado-galeria', {
+  loop: true,
+  pagination: {
+    el: '.custom-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const steps = document.querySelectorAll('.progress-step');
+  const done = document.querySelectorAll('.progress-step.done').length;
+  const progressFill = document.querySelector('.progress-bar-fill');
+  const label = document.querySelector('.progress-label');
+  const total = steps.length;
+  const percent = Math.round((done / total) * 100);
+
+  progressFill.style.width = percent + '%';
+  label.textContent = `Overall progress: ${percent}%`;
+});
+
 //Contacto
 function copyEmail() {
   navigator.clipboard.writeText("christian.rueda@csic.es")

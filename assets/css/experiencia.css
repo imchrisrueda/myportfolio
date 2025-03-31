@@ -116,7 +116,7 @@ body.dark #experiencia .tab-button {
 }
 
 body.dark #experiencia .timeline-content {
-  background-color: #1f2937;
+  background-color: var(--color-box-background);
   border-color: var(--color-bg-dark);
 }
 

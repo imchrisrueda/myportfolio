@@ -31,7 +31,17 @@ color: #6b7280;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
-  }
+}
+
+#perfil project_actual a {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  transition: color 0.3s ease;
+}
+#perfil project_actual a:hover {
+background-color: #0097a7;
+}
 
 #perfil blockquote {
 font-style: italic;

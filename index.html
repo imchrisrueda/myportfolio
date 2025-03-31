@@ -10,7 +10,8 @@
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-yNb6PtNMyFSZ+lWXur1ItEZTrsQ6iOdf9BYdkmbj6RHZb9YXNP2EYf6xFVwAoMeAwfLtPgCnlvS9u+B8e4w4Zg==" crossorigin="anonymous" referrerpolicy="no-referrer" />  
-
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 </head>
 <body>
@@ -37,17 +38,17 @@
         <img src="assets/img/f1.jpg" alt="Foto de perfil">
         <h1>Christian Rueda-Ayala</h1>
         <h2>Mechatronics Engineer - AI & Data Science Enthusiast</h2>
-        <project_actual>Now, working on DigitalWeeds! AI-powered tools for precise invasive weed management, reducing herbicides and boosting farm profitability. 
-          Leveraging drone and mobile imagery to revolutionize plant health.</project_actual>
+        <project_actual>Now, working on Momentum - DigitalWeeds! AI-powered tools for precise invasive weed management, reducing herbicides and boosting farm profitability. 
+          Leveraging drone and mobile imagery to revolutionize plant health. <a href="#proyectos"> (More info click here)</a> </project_actual> 
         <blockquote>
           "I'm a passionate problem-solver, leveraging innovative technology to overcome challenges. My driving force is continuous learning and building robust solutions."
         </blockquote>
         <a href="#contacto" class="contact-btn">Contact me</a>
         <div class="social-icons">
-          <a href="https://www.linkedin.com/in/imchrisrueda/"><i class="bx bxl-linkedin-square"></i></a>
-          <a href="https://github.com/imchrisrueda"><i class="bx bxl-github"></i></a>
-          <a href="https://www.youtube.com/channel/UC3SxpLIEPYl2rYfWPMpdcvw"><i class="bx bxl-youtube"></i></a>
-          <a href="https://x.com/imchrisrueda"><i class="bx bxl-twitter"></i></a>
+          <a href="https://www.linkedin.com/in/imchrisrueda/" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
+          <a href="https://github.com/imchrisrueda" target="_blank"><i class="bx bxl-github"></i></a>
+          <a href="https://www.youtube.com/channel/UC3SxpLIEPYl2rYfWPMpdcvw" target="_blank"><i class="bx bxl-youtube"></i></a>
+          <a href="https://x.com/imchrisrueda" target="_blank"><i class="bx bxl-twitter"></i></a>
         </div>        
       </div>
     </section>
@@ -506,146 +507,284 @@
         </div>
       </div>
     </section>  
-             
+    
+    <!-- <section id="proyecto-destacado" class="section">
+      <div class="destacado-container">
+        <span class="badge">🛠 In Progress</span>
+        <h2>Featured Project: Smart Plant Classifier</h2>
+        <div class="swiper destacado-galeria">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="assets/img/plant1.png" alt="Screenshot 1">
+              <p class="slide-caption">Classifier dashboard with prediction results</p>
+            </div>
+            <div class="swiper-slide">
+              <img src="assets/img/plant2.png" alt="Screenshot 2">
+              <p class="slide-caption">Model architecture and training pipeline</p>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+        <p class="destacado-desc">
+          This application uses convolutional neural networks to classify plant species from RGB images. Designed for use in precision agriculture, it's trained with synthetic and real-world datasets and features a web-based interface for accessibility.
+        </p>
+        <div class="foda">
+          <div><strong>Strengths:</strong> Accurate model, cross-platform interface.</div>
+          <div><strong>Opportunities:</strong> Use in educational platforms and agriculture management.</div>
+          <div><strong>Weaknesses:</strong> Requires high-quality input images.</div>
+          <div><strong>Threats:</strong> Dependence on external APIs for image upload.</div>
+        </div>
+        <div class="destacado-links">
+          <a href="#" target="_blank" class="btn-link">GitHub</a>
+          <a href="#" target="_blank" class="btn-link">Demo</a>
+          <a href="#" target="_blank" class="btn-link">Paper</a>
+        </div>
+      </div>
+    </section> -->
     <section id="proyectos" class="section">
       <div class="proyectos-container">
-        <h2>Projects</h2>
+        <h1>Projects</h1>
+        <!-- Proyecto Destacado -->
+        <div class="proyecto-destacado">
+          <h2>Featured Project: Momentum's - DigitalWeeds</h2>
+          <div class="badge-container"><span class="badge">🛠 In Progress</span></div>
+          <div class="swiper destacado-galeria">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="assets/img/kickoff.png" alt="Screenshot 1">
+                <p class="slide-caption">DigitalWeeds kick-off Meeting - We're on!</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/img/concept.png" alt="Screenshot 2" style="width: auto; margin: auto;">
+                <p class="slide-caption">Momentum's DigitalWeeds project conceptualization</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/img/amaranthus_plant.jpg" alt="Screenshot 3" style="width: auto; margin: auto;">
+                <p class="slide-caption">Amaranthus Palmeri seedling</p>
+              </div>
+              <div class="swiper-slide">
+                <img src="assets/img/project_drone.JPG" alt="Screenshot 3" style="width: auto; margin: auto;">
+                <p class="slide-caption">Drone for DigitalWeeds - DJI Matrix 300 RTK</p>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+          <p class="destacado-desc">
+            DigitalWeeds project aims to design, develop, and validate digital agriculture AI tools focused on detecting and mapping <i>Amaranthus Palmeri</i>. The ultimate goal is to support its control, improve management strategies, and reduce herbicide use in alignment with precision agriculture (PA) principles.
+          </p>
+  
+          <!-- Barra de progreso visual -->
+          <div class="progress-bar-wrapper">
+            <div class="progress-bar">
+              <div class="progress-bar-fill"></div>
+            </div>
+            <p class="progress-label">Overall progress: 60%</p>
+          </div>
+    
+          <div class="progress-track">
+            <div class="progress-step done">Planning</div>
+            <div class="progress-step">Data Collection</div>
+            <div class="progress-step">Model Training</div>
+            <div class="progress-step">Testing</div>
+            <div class="progress-step">Interface & Deployment</div>
+            <div class="progress-step">Maintainance</div>
+          </div>
+    
+          <div class="destacado-links">
+            <a href="https://github.com/imchrisrueda/digitalweedsproject" target="_blank" class="btn-link">GitHub</a>
+            <!-- <a href="#" target="_blank" class="btn-link">Demo</a> -->
+            <a href="https://momentum.csic.es/wp-content/uploads/2024/08/MMT24-INIA-01-01-FICHA-MOMENTUM-ENG.pdf" target="_blank" class="btn-link">Position Offer</a>
+          </div>
+
+          <section id="dafo-digitalweeds" class="dafo-section">
+            <h2 class="dafo-title">SWOT – DigitalWeeds Project</h2>
+            <div class="dafo-grid">
+              <div class="dafo-box strengths">
+                <h3>Strengths</h3>
+                <ul>
+                  <li>Integration of cutting-edge technologies (remote sensing, deep learning, mobile apps).</li>
+                  <li>Multidisciplinary team with expertise in precision agriculture, AI, and geomatics.</li>
+                  <li>Clear ecological and sustainability objectives aligned with global goals.</li>
+                  <li>Potential for real impact on herbicide reduction and biodiversity preservation.</li>
+                </ul>
+              </div>
+              <div class="dafo-box weaknesses">
+                <h3>Weaknesses</h3>
+                <ul>
+                  <li>Dependence on high-quality labeled datasets for AI model training.</li>
+                  <li>Limited scalability in early stages due to technological complexity.</li>
+                  <li>Possible field data acquisition constraints.</li>
+                  <li>Need for constant maintenance and updates.</li>
+                </ul>
+              </div>
+              <div class="dafo-box opportunities">
+                <h3>Opportunities</h3>
+                <ul>
+                  <li>Growing demand for sustainable agricultural solutions.</li>
+                  <li>Scalability to other species or regions.</li>
+                  <li>Potential for academic publications and open tools.</li>
+                  <li>Interest from public or private sectors.</li>
+                </ul>
+              </div>
+              <div class="dafo-box threats">
+                <h3>Threats</h3>
+                <ul>
+                  <li>Rapid evolution of AI and sensor tech.</li>
+                  <li>Regulatory or privacy constraints on data collection.</li>
+                  <li>Resistance to digital adoption in traditional farming.</li>
+                  <li>Funding or continuity risks beyond initial phase.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+        </div>
+    
+        <!-- Otros Proyectos -->
+        <h2 class="otros-subtitulo">Other Projects</h2>
         <div class="proyectos">
     
           <!-- Proyecto 1 -->
           <div class="proyecto">
-            <h3>Clasificador de Imágenes de Plantas</h3>
+            <h3>DIGinvasive</h3>
             <div class="flip-container">
               <div class="flip-card">
                 <div class="flip-front">
-                  <img src="assets/img/Agronomy-banner.png" alt="Clasificador de Plantas">
-                  <p>Aplicación web que permite identificar especies de plantas a partir de imágenes usando redes neuronales convolucionales entrenadas con un dataset personalizado.</p>
-                  <p class="tech">Tecnologías: TensorFlow, Keras, OpenCV, Python, Streamlit</p>
+                  <img src="assets/img/diginvasive_logo.png" alt="Clasificador de Plantas" style="width: auto; height: 200px; margin: auto;">
+                  <p>DIGinvasive is an innovative digital agriculture web-based system designed to map and assess the emergence and spread of invasive weed species threatening crop production.</p>
+                  <p class="tech">Technologies: TensorFlow, Keras, OpenCV, Python, ArcGIS, PostGIS</p>
                   <div class="tech-icons">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="OpenCV">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
                   </div>
                   <div class="flip-icon">↻</div>
                 </div>
                 <div class="flip-back">
-                  <div class="foda-entry"><strong>Fortalezas:</strong> Implementación precisa y experiencia con visión por computadora.</div>
-                  <div class="foda-entry"><strong>Oportunidades:</strong> Aplicación para agricultura de precisión en campo.</div>
-                  <div class="foda-entry"><strong>Debilidades:</strong> Limitada interfaz gráfica para usuarios no técnicos.</div>
-                  <div class="foda-entry"><strong>Amenazas:</strong> Variabilidad en la calidad de las imágenes de entrada.</div>
+                  <div class="foda-entry">
+                    <strong>Strengths:</strong> Novel integration of geospatial and digital tools tailored to invasive weed monitoring. Open-access platform promoting collaborative data entry and regional-scale mapping. Scalable design applicable to other weed species and territories. 
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Weaknesses:</strong> Dependence on user input for high-resolution local data. Requires continuous data validation to maintain accuracy. Platform adoption may vary across regions and user profiles.
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Opportunities:</strong> Growing institutional interest in biodiversity and invasive species control. Potential for national and EU-level environmental integration. 
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Threats:</strong> Data privacy or policy restrictions on georeferenced weed reporting. Technological barriers among end-users (training, device access). Risk of platform underuse without adequate outreach. 
+                  </div>                            
                 </div>
               </div>
             </div>
             <div class="estado-proyecto">
               <div class="estado-barra">
-                <div class="estado-fill" style="--estado: 85%"></div>
+                <div class="estado-fill" style="--estado: 95%"></div>
               </div>
-              <p class="estado-texto">Progreso: 85%</p>
+              <p class="estado-texto">Progress: 95%</p>
             </div>
-            <a href="https://github.com/usuario/proyecto1" target="_blank">Ver en GitHub</a>
+            <a href="https://diginvasive.csic.es/" target="_blank">Webpage</a>
           </div>
     
           <!-- Proyecto 2 -->
           <div class="proyecto">
-            <h3>Dashboard Interactivo de Análisis</h3>
+            <h3>AI for Data Science projects</h3>
             <div class="flip-container">
               <div class="flip-card">
                 <div class="flip-front">
-                  <img src="assets/img/Agronomy-banner.png" alt="Dashboard Interactivo">
-                  <p>Plataforma de análisis económico con visualizaciones dinámicas conectadas a una base de datos PostgreSQL y backend en Node.js.</p>
-                  <p class="tech">Tecnologías: React, Chart.js, PostgreSQL, Node.js</p>
+                  <img src="assets/img/ai_data_science.png" alt="AI for Data Science projects" style="width: auto; height: 200px; margin: auto;">
+                  <p>AI-Data Science Projects developed for the PUCE's Data Science Master Programme</p>
+                  <p class="tech">Technologies: Python, Pandas, Scikit-Learn</p>
                   <div class="tech-icons">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" />
                   </div>
                   <div class="flip-icon">↻</div>
                 </div>
                 <div class="flip-back">
-                  <div class="foda-entry"><strong>Fortalezas:</strong> Visualización atractiva e integración de datos.</div>
-                  <div class="foda-entry"><strong>Oportunidades:</strong> Ampliación hacia análisis en tiempo real.</div>
-                  <div class="foda-entry"><strong>Debilidades:</strong> Complejidad en mantenimiento del backend.</div>
-                  <div class="foda-entry"><strong>Amenazas:</strong> Escalabilidad limitada por la arquitectura actual.</div>
+                  <div class="foda-entry">
+                    <strong>Strengths:</strong> Built using open-source technologies such as Python, Pandas, Scikit-learn, and TensorFlow. Aligned with real-world Data Science challenges and academic standards. Provides hands-on experience in machine learning and deep learning. Offers reproducible, transparent, and modular code.
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Weaknesses:</strong> Requires users to have intermediate to advanced technical knowledge. Limited documentation for some projects may hinder onboarding. Variability in code quality across contributions. Not optimized for production environments.
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Opportunities:</strong> Potential to expand into a collaborative learning hub or teaching platform. Can serve as a reference for thesis work or professional portfolios. Opportunity to integrate with cloud computing services and real datasets. Can evolve into a showcase for AI applications across domains.
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Threats:</strong> Risk of project stagnation without active contributors or maintainers. 
+                  </div>
+                  
                 </div>
               </div>
             </div>
             <div class="estado-proyecto">
               <div class="estado-barra">
-                <div class="estado-fill" style="--estado: 60%"></div>
+                <div class="estado-fill" style="--estado: 100%"></div>
               </div>
-              <p class="estado-texto">Progreso: 60%</p>
+              <p class="estado-texto">Progress: 100%</p>
             </div>
-            <a href="https://github.com/usuario/proyecto2" target="_blank">Ver en GitHub</a>
+            <a href="https://github.com/imchrisrueda/MSI_DS_2024" target="_blank">GitHub</a>
           </div>
-                    <!-- Proyecto 2 -->
-                    <div class="proyecto">
-                      <h3>Dashboard Interactivo de Análisis</h3>
-                      <div class="flip-container">
-                        <div class="flip-card">
-                          <div class="flip-front">
-                            <img src="assets/img/Agronomy-banner.png" alt="Dashboard Interactivo">
-                            <p>Plataforma de análisis económico con visualizaciones dinámicas conectadas a una base de datos PostgreSQL y backend en Node.js.</p>
-                            <p class="tech">Tecnologías: React, Chart.js, PostgreSQL, Node.js</p>
-                            <div class="tech-icons">
-                              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-                              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
-                              <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
-                            </div>
-                            <div class="flip-icon">↻</div>
-                          </div>
-                          <div class="flip-back">
-                            <div class="foda-entry"><strong>Fortalezas:</strong> Visualización atractiva e integración de datos.</div>
-                            <div class="foda-entry"><strong>Oportunidades:</strong> Ampliación hacia análisis en tiempo real.</div>
-                            <div class="foda-entry"><strong>Debilidades:</strong> Complejidad en mantenimiento del backend.</div>
-                            <div class="foda-entry"><strong>Amenazas:</strong> Escalabilidad limitada por la arquitectura actual.</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="estado-proyecto">
-                        <div class="estado-barra">
-                          <div class="estado-fill" style="--estado: 60%"></div>
-                        </div>
-                        <p class="estado-texto">Progreso: 60%</p>
-                      </div>
-                      <a href="https://github.com/usuario/proyecto2" target="_blank">Ver en GitHub</a>
-                    </div>
-
-                            <!-- Proyecto 2 -->
+          <!-- Proyecto 2 -->
           <div class="proyecto">
-            <h3>Dashboard Interactivo de Análisis</h3>
+            <h3>AI for Engineering Projects</h3>
             <div class="flip-container">
               <div class="flip-card">
                 <div class="flip-front">
-                  <img src="assets/img/Agronomy-banner.png" alt="Dashboard Interactivo">
-                  <p>Plataforma de análisis económico con visualizaciones dinámicas conectadas a una base de datos PostgreSQL y backend en Node.js.</p>
-                  <p class="tech">Tecnologías: React, Chart.js, PostgreSQL, Node.js</p>
-                  <div class="tech-icons">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                  <img src="assets/img/ai_engineering.png" alt="AI for Engineering projects" style="width: auto; height: 200px; margin: auto;">
+                  <p>Applied AI for Mechatronics Engineering - Compilation of projects developed for UIDE's Mechatronics Engineering Bachelor Programme</p>
+                  <p class="tech">Technologies: Python, Pandas, Scikit-Learn, Tensorflow, Matlab</p>
+                  <div class="tech-icons">                    
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" />
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matlab/matlab-original.svg" /> 
                   </div>
                   <div class="flip-icon">↻</div>
                 </div>
                 <div class="flip-back">
-                  <div class="foda-entry"><strong>Fortalezas:</strong> Visualización atractiva e integración de datos.</div>
-                  <div class="foda-entry"><strong>Oportunidades:</strong> Ampliación hacia análisis en tiempo real.</div>
-                  <div class="foda-entry"><strong>Debilidades:</strong> Complejidad en mantenimiento del backend.</div>
-                  <div class="foda-entry"><strong>Amenazas:</strong> Escalabilidad limitada por la arquitectura actual.</div>
+                  <div class="foda-entry">
+                    <strong>Strengths:</strong> Novel integration of geospatial and digital tools tailored to invasive weed monitoring. Open-access platform promoting collaborative data entry and regional-scale mapping. Scalable design applicable to other weed species and territories. 
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Weaknesses:</strong> Dependence on user input for high-resolution local data. Requires continuous data validation to maintain accuracy. Platform adoption may vary across regions and user profiles.
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Opportunities:</strong> Growing institutional interest in biodiversity and invasive species control. Potential for national and EU-level environmental integration. 
+                  </div>
+                  
+                  <div class="foda-entry">
+                    <strong>Threats:</strong> Data privacy or policy restrictions on georeferenced weed reporting. Technological barriers among end-users (training, device access). Risk of platform underuse without adequate outreach. 
+                  </div>                            
                 </div>
               </div>
             </div>
             <div class="estado-proyecto">
               <div class="estado-barra">
-                <div class="estado-fill" style="--estado: 60%"></div>
+                <div class="estado-fill" style="--estado: 100%"></div>
               </div>
-              <p class="estado-texto">Progreso: 60%</p>
+              <p class="estado-texto">Progress: 100%</p>
             </div>
-            <a href="https://github.com/usuario/proyecto2" target="_blank">Ver en GitHub</a>
-          </div>
-    
+            <a href="https://github.com/imchrisrueda/EndomorfismoII_2024_2" target="_blank">GitHub</a>
+                    </div>
         </div>
       </div>
     </section>
+    
     
     <section id="publicaciones" class="section">
       <div class="publicaciones-container">
@@ -714,9 +853,11 @@
       <div class="blog-container">
         <h2>News</h2>
         <div class="blog-post">
-          <h3>Lanzamiento del Clasificador de Plantas</h3>
-          <p class="blog-date">Marzo 2025</p>
-          <p>Hoy liberamos la primera versión del clasificador de plantas basado en redes neuronales convolucionales. El sistema es capaz de identificar con un 95% de precisión especies comunes de cultivos a partir de imágenes RGB.</p>
+          <h3>Momentum's DigitalWeeds kick-off Meeting</h3>
+          <p class="blog-date">March 2025</p>
+          <p>On March 13th, 2025, we officially launched the DigitalWeeds project with a kick-off meeting attended by the Principal Investigator (PI), the Co-Investigator (Co-IP), and myself as the contracted researcher. This meeting marked the beginning of a collaborative effort aimed at leveraging digital tools and artificial intelligence for precision weed management.
+            During the session, we reviewed the core objectives of the project, discussed the proposed timeline, and outlined the key deliverables. The PI and Co-IP provided valuable insights into the strategic vision of DigitalWeeds, setting clear expectations for each phase of development. We also aligned on communication protocols and set milestones for the first quarter.
+          </p>
         </div>
         <div class="blog-post">
           <h3>I Encuentro Momentum: De la teoría a la práctica</h3>
