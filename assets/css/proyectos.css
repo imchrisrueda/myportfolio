@@ -1,58 +1,87 @@
-/* Contenedor padre */
-.projects {
+#proyectos {
+  padding: 4rem 2rem;
+}
+
+.proyectos-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+#proyectos h2 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--color-accent);
+  text-align: center;
+}
+
+.proyectos {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  padding: 0 0.5rem;
+  gap: 1.5rem;
 }
 
-/* Tarjeta de proyecto individual */
-.project {
+.proyecto {
   width: 300px;
   background-color: rgba(0, 0, 0, 0.03);
   border-radius: 1rem;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
   padding: 1rem;
   text-align: center;
-  transition: background-color var(--transition-speed), box-shadow 0.3s ease;
+  transition: background-color var(--transition-speed), box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-body.dark .project {
+.proyecto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .proyecto {
   background-color: rgba(255, 255, 255, 0.05);
   box-shadow: 0 1px 3px rgba(255,255,255,0.05);
 }
 
-.project img {
+.proyecto img {
   border-radius: 0.5rem;
   margin-bottom: 0.75rem;
   width: 100%;
 }
 
-.project h3 {
+.proyecto h3 {
   font-weight: 700;
   font-size: 1.125rem;
   margin-bottom: 0.5rem;
-  color: inherit;
+  color: var(--color-text-light);
 }
 
-.project p {
+body.dark .proyecto h3 {
+  color: var(--color-text-dark);
+}
+
+.proyecto p {
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
-  color: inherit;
+  color: var(--color-text-light);
 }
 
-.project p.tech {
+body.dark .proyecto p {
+  color: var(--color-text-dark);
+}
+
+.proyecto p.tech {
   font-size: 0.75rem;
   color: #6b7280;
 }
 
-body.dark .project p.tech {
+body.dark .proyecto p.tech {
   color: #9ca3af;
 }
 
 .tech-icons {
-  display:flex;
+  display: flex;
   gap: 0.5rem;
   margin-bottom: 0.75rem;
   justify-content: center;
@@ -63,13 +92,125 @@ body.dark .project p.tech {
   height: 1.5rem;
 }
 
-.project a {
+.estado-proyecto {
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.estado-barra {
+  background-color: #e5e7eb;
+  height: 8px;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.estado-fill {
+  height: 100%;
+  background-color: var(--color-accent);
+  width: var(--estado);
+  animation: rellenarEstado 1.5s ease forwards;
+}
+
+body.dark .estado-barra {
+  background-color: #374151;
+}
+
+.estado-texto {
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  color: #6b7280;
+}
+
+body.dark .estado-texto {
+  color: #d1d5db;
+}
+
+@keyframes rellenarEstado {
+  from { width: 0; }
+  to { width: var(--estado); }
+}
+
+.proyecto a {
   color: var(--color-accent);
   text-decoration: none;
   font-weight: 700;
+  transition: text-decoration 0.3s ease;
 }
 
-.project a:hover {
+.proyecto a:hover {
   text-decoration: underline;
 }
 
+/* Flip card styles */
+.flip-container {
+  perspective: 1000px;
+}
+
+.flip-card {
+  width: 100%;
+  height: 480px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+.flip-container:hover .flip-card {
+  transform: rotateY(180deg);
+}
+
+.flip-front, .flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.flip-front {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.flip-back {
+  background-color: #e0f2fe;
+  transform: rotateY(180deg);
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.foda-entry {
+  margin-bottom: 0.4rem;
+}
+
+.foda-entry strong {
+  display: inline-block;
+  width: 100px;
+  color: #204c94;
+  font-size: 0.8rem;
+}
+
+body.dark .flip-back {
+  background-color: #1f2937;
+  color: #d1d5db;
+}
+
+/* Animación de transición más fluida */
+.flip-card {
+  transition: transform 0.8s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+/* Icono de giro */
+.flip-icon {
+  margin-top: 0.5rem;
+  font-size: 2.2rem;
+  color: #3673de;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}

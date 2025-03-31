@@ -1,17 +1,82 @@
-/* CONTACTO */
-#contacto ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+#contacto {
+  padding: 4rem 2rem;
+}
+.contacto-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  text-align: center;
 }
 
-#contacto a {
-  text-decoration: none;
+#contacto h2 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
   color: var(--color-accent);
+  text-align: center;
 }
 
-#contacto a:hover {
-  text-decoration: underline;
+.contacto-form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
 }
+
+.contacto-form input,
+.contacto-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.contacto-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.contacto-form button {
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.contacto-form button:hover {
+  background-color: var(--color-text-light);
+}
+
+.copy-btn {
+  background: none;
+  border: none;
+  color: #2563eb;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+#contacto .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  }
+  
+  #contacto .social-icons a {
+  font-size: 2rem;
+  color: var(--color-accent);
+  transition: color 0.3s ease;
+  }
+  
+  #contacto .social-icons a:hover {
+  color: #0097a7;
+  }
