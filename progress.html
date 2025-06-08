@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalWeeds - Dashboard de Progreso</title>
+    <style>
+        :root {
+            --color-primary: #22c55e;
+            --color-secondary: #84cc16;
+            --color-accent1: #3b82f6;
+            --color-accent2: #8b5cf6;
+            --color-accent3: #06b6d4;
+            --color-accent4: #f59e0b;
+            --text-light: #f8fafc;
+            --text-medium: #94a3b8;
+            --bg-dark-start: #0f172a;
+            --bg-dark-mid: #1e293b;
+            --bg-dark-end: #334155;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark-start) 0%, var(--bg-dark-mid) 50%, var(--bg-dark-end) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .header { text-align: center; margin-bottom: 3rem; position: relative; }
+        .header::before {
+            content: ''; position: absolute; top: -50px; left: 50%;
+            transform: translateX(-50%); width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse { 50% { transform: translateX(-50%) scale(1.1); opacity: 0.8; } }
+
+        .logo {
+            width: 120px; height: auto; display: block;
+            margin: 0 auto 1.5rem; border-radius: 20px;
+            padding: 10px; background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 3rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 0.5rem; position: relative; z-index: 1;
+        }
+        .subtitle { font-size: 1.2rem; color: var(--text-medium); font-weight: 300; max-width: 600px; margin: 0 auto; }
+        .section { margin-bottom: 4rem; }
+        .section-title { font-size: 2rem; font-weight: 700; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-light); }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border); border-radius: 24px; padding: 2rem;
+            transition: all 0.3s ease; position: relative; overflow: hidden; cursor: pointer;
+        }
+        .glass-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+
+        .project-description:hover { border-color: rgba(34, 197, 94, 0.3); }
+        .project-description h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-primary); font-weight: 700; }
+        .project-description p, .objective-description { color: var(--text-medium); line-height: 1.6; }
+        .click-indicator { color: var(--color-primary); font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
+        .click-indicator::after { content: '→'; transition: transform 0.3s ease; }
+        .project-description:hover .click-indicator::after { transform: translateX(5px); }
+
+        .objectives-grid, .activities-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .objective-card, .activity-card { border-radius: 20px; }
+        .objective-card:hover { border-color: rgba(59, 130, 246, 0.3); }
+        .objective-number {
+            display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, var(--color-accent1), #1d4ed8);
+            border-radius: 50%; font-weight: 700; font-size: 1.2rem; margin-bottom: 1rem;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        .objective-title, .activity-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-light); }
+
+        .activity-icon {
+            width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; margin-bottom: 1rem; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .activity-subtitle { color: var(--text-medium); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .progress-bar { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; }
+        .progress-fill { height: 100%; border-radius: 4px; transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1); position: relative; }
+        .progress-fill::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+        .progress-text { text-align: right; font-size: 0.9rem; font-weight: 600; }
+        
+        .timeline-container { padding: 2rem; }
+        .timeline-item { position: relative; padding-left: 3rem; margin-bottom: 2rem; }
+        .timeline-item::before { content: ''; position: absolute; left: 0; top: 0; width: 14px; height: 14px; background: var(--color-primary); border-radius: 50%; box-shadow: 0 0 20px rgba(34, 197, 94, 0.5); }
+        .timeline-item::after { content: ''; position: absolute; left: 6px; top: 14px; width: 2px; height: calc(100% + 1rem); background: linear-gradient(to bottom, var(--color-primary), transparent); }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item:last-child::after { display: none; }
+        .timeline-year { font-size: 1.3rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0.5rem; }
+        .timeline-content { color: var(--text-medium); font-size: 1rem; line-height: 1.6; }
+        
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+        .modal-content { background: linear-gradient(135deg, var(--bg-dark-mid), var(--bg-dark-end)); margin: 5% auto; padding: 2rem; border-radius: 20px; width: 90%; max-width: 900px; border: 1px solid var(--glass-border); animation: modalAppear 0.4s cubic-bezier(0.25, 1, 0.5, 1); max-height: 85vh; overflow-y: auto; }
+        @keyframes modalAppear { from { opacity: 0; transform: translateY(-50px); } to { opacity: 1; transform: translateY(0); } }
+        .modal-close { color: #aaa; float: right; font-size: 2rem; font-weight: bold; cursor: pointer; transition: color 0.3s; line-height: 1; }
+        .modal-close:hover { color: var(--color-primary); }
+
+        .accordion-button { background: var(--bg-dark-start); color: var(--color-primary); border: 1px solid var(--glass-border); border-radius: 8px; padding: 12px 15px; width: 100%; text-align: left; font-weight: bold; font-size: 1rem; cursor: pointer; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.3s; }
+        .accordion-button:hover { background: var(--bg-dark-mid); }
+        .accordion-content { overflow: hidden; max-height: 0; transition: max-height 0.4s ease-out; padding-left: 1rem; border-left: 2px solid var(--color-primary); margin-left: 0.5rem; margin-bottom: 1rem; color: var(--text-medium); }
+        .accordion-content ul { list-style-type: '✔  '; padding-left: 1rem; }
+        .accordion-content li { margin-bottom: 0.5rem; }
+        .accordion-icon { font-size: 1.2rem; transition: transform 0.4s ease; }
+        
+        .impact-content { color: var(--text-medium); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem; }
+        .impact-areas { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+        .impact-tag { padding: 0.5rem 1rem; border-radius: 25px; font-size: 0.9rem; font-weight: 600; transition: all 0.3s ease; }
+        .impact-tag:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
+        .impact-tag:nth-child(1) { background: rgba(34, 197, 94, 0.2); color: var(--color-primary); }
+        .impact-tag:nth-child(2) { background: rgba(59, 130, 246, 0.2); color: var(--color-accent1); }
+        .impact-tag:nth-child(3) { background: rgba(139, 92, 246, 0.2); color: var(--color-accent2); }
+        .impact-tag:nth-child(4) { background: rgba(6, 182, 212, 0.2); color: var(--color-accent3); }
+        .impact-tag:nth-child(5) { background: rgba(245, 158, 11, 0.2); color: var(--color-accent4); }
+        .impact-tag:nth-child(6) { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+        @media (max-width: 768px) {
+            .container { padding: 1.5rem; }
+            h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.6rem; }
+            .objectives-grid, .activities-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="assets/img/digitalweeds_logo_svg.png" alt="Logo de DigitalWeeds" class="logo">
+            <h1>DigitalWeeds</h1>
+            <p class="subtitle">Nuevas herramientas digitales para el control eficiente de malas hierbas invasoras</p>
+        </header>
+
+        <section class="section">
+            <div class="project-description glass-card" data-modal-key="project-description">
+                <h3>Descripción del Proyecto</h3>
+                <p>DigitalWeeds se centra en el uso de tecnología basada en teledetección para la identificación, caracterización y cartografía de malas hierbas invasoras en maíz.</p>
+                <div class="click-indicator">Haz clic para ver más detalles</div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🎯 Objetivos del Proyecto</h2>
+            <div class="objectives-grid">
+                <div class="objective-card glass-card" data-modal-key="objetivo1"><div class="objective-number">1</div><h4 class="objective-title">Productos Geomáticos</h4><p class="objective-description">Generación de productos para la caracterización multitemporal de especies de Amaranthus.</p></div>
+                <div class="objective-card glass-card" data-modal-key="objetivo2"><div class="objective-number">2</div><h4 class="objective-title">Imágenes Sintéticas</h4><p class="objective-description">Generación de imágenes con modelos generativos para mejorar la clasificación y reducir costes.</p></div>
+                <div class="objective-card glass-card" data-modal-key="objetivo3"><div class="objective-number">3</div><h4 class="objective-title">Cartografía y Seguimiento</h4><p class="objective-description">Desarrollo de algoritmos Deep Learning para detectar y cartografiar A. palmeri.</p></div>
+                <div class="objective-card glass-card" data-modal-key="objetivo4"><div class="objective-number">4</div><h4 class="objective-title">Aplicación Móvil</h4><p class="objective-description">Desarrollo de una app multiplataforma para la identificación en campo con dispositivos móviles.</p></div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">📊 Actividades y Progreso</h2>
+            <div class="activities-grid">
+                <div class="activity-card glass-card" data-activity-key="memoria" data-modal-key="memoria"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent1), #1d4ed8);">📊</div><h3 class="activity-title">Memoria Anual</h3><p class="activity-subtitle">Informes anuales y entregables</p><div class="progress-bar"><div class="progress-fill" style="background: linear-gradient(90deg, var(--color-accent1), #1d4ed8);"></div></div><p class="progress-text" style="color: var(--color-accent1);"></p></div>
+                <div class="activity-card glass-card" data-activity-key="estancias" data-modal-key="estancias"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent2), #7c3aed);">✈️</div><h3 class="activity-title">Estancias Formativas</h3><p class="activity-subtitle">3 estancias internacionales</p><div class="progress-bar"><div class="progress-fill" style="background: linear-gradient(90deg, var(--color-accent2), #7c3aed);"></div></div><p class="progress-text" style="color: var(--color-accent2);"></p></div>
+                <div class="activity-card glass-card" data-activity-key="digital" data-modal-key="digital"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent3), #0891b2);">🤖</div><h3 class="activity-title">Competencias Digitales</h3><p class="activity-subtitle">IA, SIG, Teledetección</p><div class="progress-bar"><div class="progress-fill" style="background: linear-gradient(90deg, var(--color-accent3), #0891b2);"></div></div><p class="progress-text" style="color: var(--color-accent3);"></p></div>
+                <div class="activity-card glass-card" data-activity-key="complementaria" data-modal-key="complementaria"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent4), #d97706);">📚</div><h3 class="activity-title">Formación Complementaria</h3><p class="activity-subtitle">Congresos y cursos</p><div class="progress-bar"><div class="progress-fill" style="background: linear-gradient(90deg, var(--color-accent4), #d97706);"></div></div><p class="progress-text" style="color: var(--color-accent4);"></p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">📅 Cronograma del Proyecto</h2>
+            <div class="timeline-container glass-card">
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <strong>Inicio del proyecto:</strong> Calibración de equipos y sensorización del dron. Planificación y ejecución de vuelos. Desarrollo de la web del proyecto. Generación de productos geomáticos iniciales.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2026</div>
+                    <div class="timeline-content">
+                        <strong>Estancia en EEUU:</strong> 3 meses en el Center of Applied Artificial Intelligence for Sustainable Agriculture - South Carolina State University. Desarrollo de modelos avanzados de Deep Learning y algoritmos para generación de imágenes sintéticas.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2027</div>
+                    <div class="timeline-content">
+                        <strong>Estancia en España:</strong> 2 meses en el Departamento de Ingeniería Gráfica y Geomática - Universidad de Córdoba. Automatización e implementación de algoritmos IA en los SIG.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2028</div>
+                    <div class="timeline-content">
+                        <strong>Estancia en Francia y finalización:</strong> 2 meses en el Grupo de Agricultura Digital, AgroTIC – Montpellier SupAgro. Desarrollo e implementación de algoritmos IA en aplicaciones móviles. Informe final del proyecto.
+                    </div>
+                </div>
+
+            </div>
+        
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🌟 Impacto Esperado</h2>
+            <div class="impact-card glass-card">
+                <div class="impact-content">
+                    DigitalWeeds busca mejorar el conocimiento científico-técnico en la gestión de malas hierbas invasoras en cultivos agrícolas desde un enfoque interdisciplinar. El proyecto combina tecnologías digitales innovadoras con conocimientos en agronomía, biología y protección de cultivos para reducir el uso de herbicidas y proteger los ecosistemas.
+                    <br><br>
+                    Las herramientas desarrolladas repercutirán positivamente en la productividad y sostenibilidad de las explotaciones agrícolas, contribuyendo al liderazgo del INIA-CSIC en el desarrollo de herramientas digitales del sector agroforestal.
+                </div>
+                <div class="impact-areas">
+                    <div class="impact-tag">Inteligencia Artificial</div><div class="impact-tag">Teledetección</div>
+                    <div class="impact-tag">Sistemas de Información Geográfica</div><div class="impact-tag">Desarrollo de Software</div>
+                    <div class="impact-tag">Agricultura de Precisión</div><div class="impact-tag">Sanidad Vegetal</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="modal" class="modal"><div class="modal-content"><span class="modal-close" data-modal-close>×</span><div id="modal-body"></div></div></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const modalData = {
+        'project-description': {
+            title: "Descripción Completa del Proyecto DigitalWeeds",
+            content: `<h3 style="color: var(--color-primary); margin-bottom: 1rem;">Antecedentes</h3><p style="line-height: 1.6;">La propagación de especies exóticas de malas hierbas invasoras (mhi) representa una amenaza crítica para los cultivos y la biodiversidad, como es el caso de Amaranthus palmeri en campos de maíz en Cataluña, Extremadura y Aragón. Esta situación ha encendido las alarmas de las autoridades fitosanitarias y organismos internacionales, evidenciando la necesidad de técnicas de detección temprana. La teledetección se plantea como una herramienta clave para el mapeo y monitoreo de estas especies, especialmente mediante imágenes de alta resolución capturadas por drones combinadas con algoritmos de inteligencia artificial (IA), lo cual permite detectar las plántulas de mhi en etapas iniciales, cuando el control es más efectivo. Avances recientes han demostrado el potencial de esta combinación para la clasificación de malas hierbas en diferentes contextos agrícolas. En este marco, el proyecto DigitalWeeds busca desarrollar herramientas digitales avanzadas para la clasificación de A. palmeri, diferenciándola de otras especies nativas morfológicamente similares y del maíz. Se evaluarán diferentes algoritmos de deep learning (DL) en términos de precisión, requerimientos de entrenamiento y eficiencia computacional. Además, se explorará la generación de imágenes sintéticas mediante modelos generativos como estrategia para mejorar los resultados y optimizar recursos.</p><h3 style="color: var(--color-primary); margin: 2rem 0 1rem;">Objetivo Principal</h3><p style="line-height: 1.6;">DigitalWeeds se centra en el uso de tecnología basada en teledetección, incluyendo imágenes de dron y sensores multiespectrales, combinado con algoritmos de IA (Deep Learning) para la identificación, caracterización y cartografía de malas hierbas invasoras en maíz, con el fin de mitigar su impacto reduciendo el uso de herbicidas.</p>`
+        },
+        'objetivo1': { title: "O.1: Productos Geomáticos", content: `<p>Calibración de equipos y sensorización del dron y cámaras de diferente rango espectral (visible y multiespectrales) para la caracterización de especies de Amaranthus presentes en campos de maíz (A. palmeri, A. hibridus, A. retroflexus); planificación y ejecución de vuelos de dron; y generación de imágenes ortomosaicadas de alta resolución y cartografía 3D de la parcela.</p>` },
+        'objetivo2': { title: "O.2: Imágenes Sintéticas", content: `<p>Generación de imágenes sintéticas para mejorar la clasificación de A. palmeri. Basadas en modelos generativos de imágenes, como Redes Generativas Adversariales (GANs) y modelos de difusión, para aumentar el conjunto de datos de entrenamiento y reducir el tiempo y coste computacional.</p>` },
+        'objetivo3': { title: "O.3: Cartografía y Seguimiento", content: `<p>Cartografía y seguimiento de plantas de A. palmeri. Desarrollo de algoritmos DL de última generación y automatización de procesos en SIG para detectar y cartografiar A. palmeri en diferentes estados de desarrollo en maíz con imágenes de dron.</p>` },
+        'objetivo4': { title: "O.4: Aplicación Móvil", content: `<p>Desarrollo de una aplicación móvil multiplataforma (app) para la identificación en campo de A. palmeri con dispositivos móviles. Diseño e implementación de la experiencia de usuario (UX), interfaz de usuario (UI) y algoritmo de IA en la aplicación móvil para la correcta identificación de plantas de A. palmeri en imágenes tomadas en campo con teléfono móvil.</p>` },
+        
+        'memoria': {
+            totalECTS: 80,
+            title: `Actividades - Memoria Anual`,
+            activitiesByMonth: {
+                "Noviembre 2024": [
+                    { ects: 0.36, desc: "Análisis de elementos compatibles DIGinvasive - DigitalWeeds" }, { ects: 0.32, desc: "Formalización del contrato" }, { ects: 0.32, desc: "Planificación de objetivos para el primer trimestre" }, { ects: 0.32, desc: "Revisión de avance" }, { ects: 0.32, desc: "Revisión de la documentación del previo a DigitalWeeds-DIGinvasive" }, { ects: 0.32, desc: "Revisión de la documentación del proyecto Momentum" }
+                ],
+                "Diciembre 2024": [
+                    { ects: 0.32, desc: "Caracterización espectral Amaranthus Palmeri" }, { ects: 0.72, desc: "Explicación de experimento de Amaranthus Palmeri" }, { ects: 0.64, desc: "Explicación de los datos obtenidos Amaranthus Palmeri" }, { ects: 0.48, desc: "Explicación gráficas de reflectancia Amaranthus Palmeri" }, { ects: 0.32, desc: "Planificación de actividades" }, { ects: 0.32, desc: "Revisión de avance" }, { ects: 0.32, desc: "Revisión de parcial de avance" }
+                ],
+                "Enero 2025": [
+                    { ects: 0.80, desc: "Filtrato de datos de Amaranthus Palmeri" }, { ects: 0.32, desc: "Planificación de actividades" }, { ects: 0.32, desc: "Revisión de avance" }, { ects: 0.32, desc: "Revisión de filtrado de Amaranthus Palmeri" }, { ects: 0.32, desc: "Revisión de parcial de avance" }, { ects: 0.08, desc: "Seminario del Proyecto InSoil" }, { ects: 0.08, desc: "Seminario del Proyecto SENSOFOREST" }
+                ],
+                "Febrero 2025": [
+                    { ects: 0.32, desc: "Planificación de actividades" }, { ects: 0.32, desc: "Revisión de avance" }, { ects: 0.32, desc: "Revisión de parcial de avance" }
+                ],
+                "Marzo 2025": [
+                    { ects: 0.32, desc: "Planificación de actividades" }, { ects: 0.16, desc: "Reunión kickoff del programa Momentum" }, { ects: 0.32, desc: "Revisión de parcial de avance" }, { ects: 0.08, desc: "Seminario del Proyecto ARxMM" }
+                ]
+            }
+        },
+        'estancias': {
+            totalECTS: 46.6, title: "Estancias Formativas", activitiesByMonth: {}
+        },
+        'digital': {
+            totalECTS: 107.8, title: `Actividades - Competencias Digitales`,
+            activitiesByMonth: {
+                "Noviembre 2024": [{ ects: 0.60, desc: "Flujos de trabajo con ArcGIS" }],
+                "Diciembre 2024": [{ ects: 0.16, desc: "Supervised Learning with scikit-learn" }],
+                "Enero 2025": [{ ects: 1.00, desc: "Python for Data Science, AI & Development" }],
+                "Febrero 2025": [{ ects: 0.28, desc: "Generative AI - Introduction and Applications" }, { ects: 0.28, desc: "Generative AI - Prompt Engineering Basics" }, { ects: 0.48, desc: "Introduction to Artificial Intelligence" }, { ects: 0.44, desc: "Software Developer Career" }],
+                "Marzo 2025": [{ ects: 0.52, desc: "Building Generative AI-Powered Applications with Python" }, { ects: 1.28, desc: "Deep Learning and Reinforcement Learning" }, { ects: 0.44, desc: "Developing AI Applications with Python and Flask" }, { ects: 0.56, desc: "Exploratory Data Analysis for Machine Learning" }, { ects: 0.68, desc: "Generative AI - Elevate your Software Development Career" }, { ects: 0.52, desc: "Introduction to HTML, CSS, & JavaScript" }, { ects: 0.56, desc: "Introduction to Software Engineering" }, { ects: 0.80, desc: "Machine Learning Capstone" }, { ects: 1.00, desc: "Supervised Machine Learning Classification" }, { ects: 0.80, desc: "Supervised Machine Learning Regression" }, { ects: 0.92, desc: "Unsupervised Machine Learning" }, { ects: 0.44, desc: "What is data science" }]
+            }
+        },
+        'complementaria': {
+            totalECTS: 26.2, title: `Actividades - Formación Complementaria`,
+            activitiesByMonth: {
+                "Enero 2025": [{ ects: 0.40, desc: "Big Data, IA y modelos predictivos en Agricultura" }],
+                "Febrero 2025": [{ ects: 0.36, desc: "I Encuentro Momentum" }, { ects: 0.40, desc: "Paradigmas Tecnológicos Evolutivos en la Ingeniería Agronómica" }],
+                "Marzo 2025": [{ ects: 0.08, desc: "Introducción al Ecosistema de MATLAB" }, { ects: 0.12, desc: "Microcredencial Portfolio Momentum" }]
+            }
+        }
+    };
+
+    function processActivityData() {
+        for (const key in modalData) {
+            const entry = modalData[key];
+            if (entry.activitiesByMonth) {
+                let totalCompletedECTS = 0;
+                let accordionHTML = '';
+                let monthCounter = 0;
+                
+                for (const month in entry.activitiesByMonth) {
+                    const activities = entry.activitiesByMonth[month];
+                    const monthECTS = activities.reduce((sum, act) => sum + act.ects, 0);
+                    totalCompletedECTS += monthECTS;
+                    
+                    const listItems = activities.map(act => `<li>${act.desc} (${act.ects.toFixed(2)} ECTS)</li>`).join('');
+                    const accordionId = `${key}-${monthCounter++}`;
+
+                    accordionHTML += `
+                        <button class="accordion-button" data-accordion-key="${accordionId}">${month}<span class="accordion-icon">➕</span></button>
+                        <div id="${accordionId}" class="accordion-content"><ul>${listItems}</ul></div>`;
+                }
+                
+                entry.completedECTS = totalCompletedECTS;
+                entry.content = `
+                    <div style="margin-top: 1rem;">${accordionHTML || "<p>No hay actividades registradas todavía.</p>"}</div>
+                    <h3 style='color:var(--color-primary); margin-top: 2rem;'>Total Acumulado</h3>
+                    <p style='color: var(--text-medium);'>${entry.completedECTS.toFixed(2)} ECTS de ${entry.totalECTS} ECTS</p>`;
+            }
+        }
+    }
+
+    const modal = document.getElementById('modal');
+    const modalBody = document.getElementById('modal-body');
+
+    function openModal(key) {
+        if (!modalData[key]) return;
+        modalBody.innerHTML = `<h2 style="color: var(--color-primary); margin-bottom: 1.5rem; border-bottom: 2px solid var(--color-primary); padding-bottom: 0.5rem;">${modalData[key].title}</h2>${modalData[key].content}`;
+        modal.style.display = "block";
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+        document.body.style.overflow = 'auto';
+    }
+
+    function toggleAccordion(button) {
+        const content = document.getElementById(button.dataset.accordionKey);
+        const icon = button.querySelector('.accordion-icon');
+        if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+            icon.textContent = '➕';
+        } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            icon.textContent = '➖';
+        }
+    }
+
+    function updateProgressCards() {
+        document.querySelectorAll('.activity-card[data-activity-key]').forEach(card => {
+            const key = card.dataset.activityKey;
+            const data = modalData[key];
+            if (data && typeof data.completedECTS === 'number') {
+                const percentage = data.totalECTS > 0 ? (data.completedECTS / data.totalECTS) * 100 : 0;
+                const progressBarFill = card.querySelector('.progress-fill');
+                card.querySelector('.progress-text').textContent = `${percentage.toFixed(2)}% Completado`;
+                setTimeout(() => { progressBarFill.style.width = `${percentage}%`; }, 100);
+            }
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        const modalKeyTarget = e.target.closest('[data-modal-key]');
+        if (modalKeyTarget) { openModal(modalKeyTarget.dataset.modalKey); return; }
+        
+        if (e.target.closest('[data-modal-close]')) { closeModal(); return; }
+        
+        const accordionButton = e.target.closest('[data-accordion-key]');
+        if (accordionButton) { toggleAccordion(accordionButton); return; }
+    });
+    
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === "Escape" && modal.style.display === "block") closeModal(); });
+
+    processActivityData();
+    updateProgressCards();
+});
+</script>
+
+</body>
+</html>
