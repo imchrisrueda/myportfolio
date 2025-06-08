@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentación - DigitalWeeds</title>
+    <style>
+        :root {
+            --color-primary: #22c55e;
+            --color-secondary: #84cc16;
+            --color-accent1: #3b82f6;
+            --color-accent2: #8b5cf6;
+            --color-accent3: #06b6d4;
+            --color-accent4: #f59e0b;
+            --text-light: #f8fafc;
+            --text-medium: #94a3b8;
+            --bg-dark-start: #0f172a;
+            --bg-dark-mid: #1e293b;
+            --bg-dark-end: #334155;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark-start) 0%, var(--bg-dark-mid) 50%, var(--bg-dark-end) 100%);
+            color: var(--text-light);
+        }
+
+        .presentation-container { height: 100%; width: 100%; position: relative; }
+        .slides-wrapper { display: flex; height: 100%; transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1); }
+        .slide {
+            width: 100vw; height: 100vh;
+            flex-shrink: 0; display: flex;
+            align-items: center; justify-content: center;
+            padding: 3rem; overflow-y: auto;
+        }
+        
+        .slide-content {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease-out 0.4s, transform 0.6s ease-out 0.4s;
+            max-width: 1200px; width: 100%;
+        }
+        .slide.is-visible .slide-content { opacity: 1; transform: translateY(0); }
+
+        /* --- Estilos de Componentes Reutilizados --- */
+        .logo { width: 320px; height: auto; margin: 0 auto 1.5rem; }
+        h1 { font-size: 4rem; font-weight: 800; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-align: center; }
+        h2 { font-size: 2.5rem; text-align: center; margin-bottom: 2rem; }
+        .subtitle { font-size: 1.5rem; color: var(--text-medium); font-weight: 300; max-width: 700px; margin: 1rem auto 0; text-align: center; }
+        
+        .glass-card { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 24px; padding: 2rem; }
+        .description-card p { font-size: 1.1rem; line-height: 1.7; color: var(--text-medium); margin-top: 1.5rem; }
+        .description-card h3 { font-size: 1.5rem; color: var(--color-primary); margin-top: 2rem; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .objective-card { text-align: center; }
+        .objective-number { display: inline-flex; width: 40px; height: 40px; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--color-accent1), #1d4ed8); border-radius: 50%; font-weight: 700; margin-bottom: 1rem; }
+        .objective-title { font-size: 1.3rem; font-weight: 700; }
+
+        .activity-card { padding: 2rem; border-radius: 20px; }
+        .activity-icon { width: 50px; height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 1rem; }
+        .activity-title { font-size: 1.3rem; }
+        .activity-subtitle { color: var(--text-medium); font-size: 0.9rem; margin-bottom: 1.5rem; }
+        .progress-bar { width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem; }
+        .progress-fill { width: 0; height: 100%; border-radius: 4px; transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1); }
+        .progress-text { text-align: right; font-size: 0.9rem; font-weight: 600; }
+        
+        .accordion-button { background: var(--bg-dark-start); color: var(--color-primary); border: 1px solid var(--glass-border); border-radius: 8px; padding: 12px 15px; width: 100%; text-align: left; font-weight: bold; font-size: 1rem; cursor: pointer; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .accordion-content { overflow: hidden; max-height: 0; transition: max-height 0.4s ease-out; padding-left: 1rem; }
+        .accordion-content ul { list-style-type: '✔ '; padding-left: 1rem; }
+        .accordion-content li { margin-bottom: 0.5rem; color: var(--text-medium); }
+
+        /* --- NUEVOS ESTILOS PARA LA DIAPOSITIVA DE CONCEPTO --- */
+        .concept-layout { display: flex; align-items: center; gap: 3rem; }
+        .concept-image-wrapper { flex: 1; text-align: center; }
+        .concept-image { max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .concept-text-wrapper { flex: 1; }
+        .concept-text-wrapper h2 { text-align: left; }
+        .concept-text-wrapper p { font-size: 1.3rem; line-height: 1.7; color: var(--text-medium); }
+        
+        /* Navegación de Diapositivas */
+        .slide-nav { position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 1rem; }
+        .slide-nav-dot { width: 12px; height: 12px; background-color: var(--glass-border); border-radius: 50%; cursor: pointer; transition: all 0.3s ease; }
+        .slide-nav-dot:hover { background-color: var(--text-medium); }
+        .slide-nav-dot.active { background-color: var(--color-primary); transform: scale(1.4); }
+
+        @media (max-width: 900px) {
+            .concept-layout { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .slide { padding: 1.5rem; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 1.8rem; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="presentation-container">
+    <div class="slides-wrapper">
+        <!-- Slide 1: Título -->
+        <section class="slide" id="slide-title">
+            <div class="slide-content" style="text-align: center;">
+                <img src="assets/img/digitalweeds_logo_svg.png" alt="Logo de DigitalWeeds" class="logo">
+                <h1>DigitalWeeds</h1>
+                <p class="subtitle">Nuevas herramientas digitales para el control eficiente de malas hierbas invasoras</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Descripción -->
+        <section class="slide" id="slide-description">
+            <div class="slide-content">
+                <h2>Descripción del Proyecto</h2>
+                <div class="description-card glass-card">
+                    <h3>Antecedentes</h3>
+                    <p>La propagación de especies exóticas de malas hierbas invasoras (mhi) representa una amenaza crítica para los cultivos y la biodiversidad, como es el caso de Amaranthus palmeri en campos de maíz. La teledetección mediante drones y la IA permiten detectar estas plántulas en etapas iniciales, cuando el control es más efectivo.</p>
+                    <h3>Objetivo Principal</h3>
+                    <p>DigitalWeeds se centra en el uso de tecnología basada en teledetección y algoritmos de Deep Learning para la identificación, caracterización y cartografía de malas hierbas invasoras en maíz, con el fin de mitigar su impacto reduciendo el uso de herbicidas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ====================================================== -->
+        <!-- NUEVA SLIDE 3: CONCEPTO VISUAL -->
+        <!-- ====================================================== -->
+        <section class="slide" id="slide-concept">
+            <div class="slide-content">
+                <div class="concept-layout">
+                    <div class="concept-image-wrapper">
+                        <!-- CAMBIA ESTA IMAGEN POR LA TUYA -->
+                        <img src="assets/img/digitalweeds_concept_2.png" alt="Imagen conceptual del proyecto DigitalWeeds" class="concept-image">
+                    </div>
+                    <div class="concept-text-wrapper">
+                        <h2>El Concepto</h2>
+                        <p>Utilizaremos drones como nuestros 'ojos en el cielo' para capturar datos, mientras algoritmos de Deep Learning actuarán como el 'cerebro', decodificando cada pixel para diferenciar con alta precisión la mala hierba invasora del cultivo. 
+                            El resultado es la transformación de simples imágenes en un mapa de acción inteligente, permitiendo un tratamiento quirúrgico que protege el maíz, minimizar el uso de herbicidas y salvaguardar la biodiversidad del ecosistema.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 4: Objetivos -->
+        <section class="slide" id="slide-objectives">
+            <div class="slide-content">
+                <h2>Objetivos Específicos</h2>
+                <div class="grid">
+                    <div class="objective-card glass-card"><div class="objective-number">1</div><h4 class="objective-title">Productos Geomáticos</h4><p class="objective-description">Generación de ortomosaicos y cartografía 3D para la caracterización de Amaranthus.</p></div>
+                    <div class="objective-card glass-card"><div class="objective-number">2</div><h4 class="objective-title">Imágenes Sintéticas</h4><p class="objective-description">Uso de modelos generativos (GANs) para aumentar el set de datos y mejorar la clasificación.</p></div>
+                    <div class="objective-card glass-card"><div class="objective-number">3</div><h4 class="objective-title">Cartografía y Seguimiento</h4><p class="objective-description">Desarrollo de algoritmos Deep Learning para detectar y mapear A. palmeri en maíz.</p></div>
+                    <div class="objective-card glass-card"><div class="objective-number">4</div><h4 class="objective-title">Aplicación Móvil</h4><p class="objective-description">Creación de una app para la identificación en campo de A. palmeri con dispositivos móviles.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Progreso General -->
+        <section class="slide" id="slide-progress-overview">
+            <div class="slide-content">
+                <h2>Progreso General de Actividades</h2>
+                <div class="grid">
+                    <div class="activity-card glass-card" data-activity-key="memoria"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent1), #1d4ed8);">📊</div><h3 class="activity-title">Memoria Anual</h3><p class="activity-subtitle">80 ECTS</p><div class="progress-bar"><div class="progress-fill" style="background: var(--color-accent1);"></div></div><p class="progress-text" style="color: var(--color-accent1);"></p></div>
+                    <div class="activity-card glass-card" data-activity-key="digital"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent3), #0891b2);">🤖</div><h3 class="activity-title">Comp. Digitales</h3><p class="activity-subtitle">107.8 ECTS</p><div class="progress-bar"><div class="progress-fill" style="background: var(--color-accent3);"></div></div><p class="progress-text" style="color: var(--color-accent3);"></p></div>
+                    <div class="activity-card glass-card" data-activity-key="complementaria"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent4), #d97706);">📚</div><h3 class="activity-title">Form. Complementaria</h3><p class="activity-subtitle">26.2 ECTS</p><div class="progress-bar"><div class="progress-fill" style="background: var(--color-accent4);"></div></div><p class="progress-text" style="color: var(--color-accent4);"></p></div>
+                    <div class="activity-card glass-card" data-activity-key="estancias"><div class="activity-icon" style="background: linear-gradient(135deg, var(--color-accent2), #7c3aed);">✈️</div><h3 class="activity-title">Estancias Formativas</h3><p class="activity-subtitle">46.6 ECTS</p><div class="progress-bar"><div class="progress-fill" style="background: var(--color-accent2);"></div></div><p class="progress-text" style="color: var(--color-accent2);"></p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Detalle Memoria Anual -->
+        <section class="slide" id="slide-detail-memoria">
+            <div class="slide-content">
+                <h2>Detalle: Memoria Anual</h2>
+                <div id="memoria-accordion" class="glass-card"></div>
+            </div>
+        </section>
+        
+        <!-- Slide 7: Detalle Competencias Digitales -->
+        <section class="slide" id="slide-detail-digital">
+            <div class="slide-content">
+                <h2>Detalle: Competencias Digitales</h2>
+                <div id="digital-accordion" class="glass-card"></div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Detalle Formación Complementaria -->
+        <section class="slide" id="slide-detail-complementaria">
+            <div class="slide-content">
+                <h2>Detalle: Formación Complementaria</h2>
+                <div id="complementaria-accordion" class="glass-card"></div>
+            </div>
+        </section>
+    </div>
+    
+    <nav class="slide-nav" id="slide-nav"></nav>
+</div>
+
+<script>
+    // El script JavaScript permanece sin cambios, ya que está diseñado para adaptarse
+    // dinámicamente al número de diapositivas que encuentre en el HTML.
+    document.addEventListener('DOMContentLoaded', () => {
+        const activityData = {
+            'memoria': {
+                totalECTS: 80,
+                activitiesByMonth: { "Noviembre 2024": [{ ects: 0.36, desc: "Análisis DIGinvasive" }, { ects: 0.32, desc: "Formalización contrato" }, { ects: 0.32, desc: "Planificación trimestral" }, { ects: 0.32, desc: "Revisión de avance" }, { ects: 0.32, desc: "Revisión doc. previa" }, { ects: 0.32, desc: "Revisión doc. Momentum" }], "Diciembre 2024": [{ ects: 0.32, desc: "Caracterización espectral" }, { ects: 0.72, desc: "Explicación experimento" }, { ects: 0.64, desc: "Explicación datos obtenidos" }, { ects: 0.48, desc: "Explicación gráficas reflectancia" }, { ects: 0.32, desc: "Planificación" }, { ects: 0.32, desc: "Revisión avance" }, { ects: 0.32, desc: "Revisión parcial" }], "Enero 2025": [{ ects: 0.80, desc: "Filtrado de datos" }, { ects: 0.32, desc: "Planificación" }, { ects: 0.32, desc: "Revisión avance" }, { ects: 0.32, desc: "Revisión de filtrado" }, { ects: 0.32, desc: "Revisión parcial" }, { ects: 0.08, desc: "Seminario InSoil" }, { ects: 0.08, desc: "Seminario SENSOFOREST" }], "Febrero 2025": [{ ects: 0.32, desc: "Planificación" }, { ects: 0.32, desc: "Revisión avance" }, { ects: 0.32, desc: "Revisión parcial" }], "Marzo 2025": [{ ects: 0.32, desc: "Planificación" }, { ects: 0.16, desc: "Kickoff Momentum" }, { ects: 0.32, desc: "Revisión parcial" }, { ects: 0.08, desc: "Seminario ARxMM" }] }
+            },
+            'estancias': { totalECTS: 46.6, activitiesByMonth: {} },
+            'digital': {
+                totalECTS: 107.8,
+                activitiesByMonth: { "Nov 2024": [{ ects: 0.60, desc: "Flujos de trabajo con ArcGIS" }], "Dic 2024": [{ ects: 0.16, desc: "Supervised Learning with scikit-learn" }], "Ene 2025": [{ ects: 1.00, desc: "Python for Data Science, AI & Development" }], "Feb 2025": [{ ects: 0.28, desc: "Intro a GenAI" }, { ects: 0.28, desc: "Prompt Engineering" }, { ects: 0.48, desc: "Intro a IA" }, { ects: 0.44, desc: "Carrera de Desarrollador" }], "Mar 2025": [{ ects: 0.52, desc: "Apps con GenAI y Python" }, { ects: 1.28, desc: "Deep & Reinforcement Learning" }, { ects: 0.44, desc: "IA con Python y Flask" }, { ects: 0.56, desc: "Análisis Exploratorio de Datos" }, { ects: 0.68, desc: "GenAI para desarrolladores" }, { ects: 0.52, desc: "Intro a HTML, CSS, JS" }, { ects: 0.56, desc: "Intro a Ing. de Software" }, { ects: 0.80, desc: "Machine Learning Capstone" }, { ects: 1.00, desc: "Clasificación Supervisada" }, { ects: 0.80, desc: "Regresión Supervisada" }, { ects: 0.92, desc: "Machine Learning No Supervisado" }, { ects: 0.44, desc: "Fundamentos de Data Science" }] }
+            },
+            'complementaria': {
+                totalECTS: 26.2,
+                activitiesByMonth: { "Ene 2025": [{ ects: 0.40, desc: "Big Data, IA en Agricultura" }], "Feb 2025": [{ ects: 0.36, desc: "I Encuentro Momentum" }, { ects: 0.40, desc: "Paradigmas Tecnológicos" }], "Mar 2025": [{ ects: 0.08, desc: "Intro a MATLAB" }, { ects: 0.12, desc: "Microcredencial Portfolio" }] }
+            }
+        };
+
+        let currentSlide = 0;
+        const slidesWrapper = document.querySelector('.slides-wrapper');
+        const slides = document.querySelectorAll('.slide');
+        const slideNav = document.getElementById('slide-nav');
+
+        function init() {
+            slides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('slide-nav-dot');
+                dot.dataset.slideTo = index;
+                slideNav.appendChild(dot);
+            });
+            processActivityData();
+            updateProgressCards();
+            goToSlide(0);
+        }
+        
+        function processActivityData() {
+            for (const key in activityData) {
+                const entry = activityData[key];
+                entry.completedECTS = 0;
+                let accordionHTML = '';
+                let monthCounter = 0;
+                
+                for (const month in entry.activitiesByMonth) {
+                    const activities = entry.activitiesByMonth[month];
+                    entry.completedECTS += activities.reduce((sum, act) => sum + act.ects, 0);
+                    const listItems = activities.map(act => `<li>${act.desc} (${act.ects.toFixed(2)} ECTS)</li>`).join('');
+                    const accordionId = `${key}-${monthCounter++}`;
+                    accordionHTML += `<button class="accordion-button" data-accordion-key="${accordionId}">${month}<span class="accordion-icon">➕</span></button><div id="${accordionId}" class="accordion-content"><ul>${listItems}</ul></div>`;
+                }
+                const accordionContainer = document.getElementById(`${key}-accordion`);
+                if (accordionContainer) { accordionContainer.innerHTML = accordionHTML || '<p>No hay actividades registradas.</p>'; }
+            }
+        }
+
+        function updateProgressCards() {
+            document.querySelectorAll('.activity-card[data-activity-key]').forEach(card => {
+                const key = card.dataset.activityKey;
+                const data = activityData[key];
+                if (data) {
+                    const percentage = data.totalECTS > 0 ? (data.completedECTS / data.totalECTS) * 100 : 0;
+                    card.querySelector('.progress-text').textContent = `${percentage.toFixed(2)}% Completado`;
+                    card.querySelector('.progress-fill').dataset.targetWidth = `${percentage}%`;
+                }
+            });
+        }
+        
+        function animateProgressBarsOnSlide(slideIndex) {
+            const targetSlide = slides[slideIndex];
+            if (targetSlide.id === 'slide-progress-overview') {
+                targetSlide.querySelectorAll('.progress-fill').forEach(bar => { bar.style.width = bar.dataset.targetWidth || '0%'; });
+            }
+        }
+
+        function goToSlide(slideIndex) {
+            if (slideIndex < 0 || slideIndex >= slides.length) return;
+            currentSlide = slideIndex;
+            slidesWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.slide').forEach(s => s.classList.remove('is-visible'));
+            slides[currentSlide].classList.add('is-visible');
+            document.querySelectorAll('.slide-nav-dot').forEach(dot => dot.classList.remove('active'));
+            document.querySelector(`.slide-nav-dot[data-slide-to="${currentSlide}"]`).classList.add('active');
+            animateProgressBarsOnSlide(currentSlide);
+        }
+        
+        slideNav.addEventListener('click', (e) => {
+            if (e.target.matches('.slide-nav-dot')) { goToSlide(parseInt(e.target.dataset.slideTo)); }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') goToSlide(currentSlide + 1);
+            if (e.key === 'ArrowLeft') goToSlide(currentSlide - 1);
+        });
+        document.addEventListener('click', e => {
+            const accordionButton = e.target.closest('.accordion-button');
+            if (accordionButton) {
+                const content = document.getElementById(accordionButton.dataset.accordionKey);
+                if (content.style.maxHeight) { content.style.maxHeight = null; } 
+                else { content.style.maxHeight = content.scrollHeight + 'px'; }
+            }
+        });
+
+        init();
+    });
+</script>
+
+</body>
+</html>
