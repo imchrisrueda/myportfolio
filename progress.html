@@ -140,6 +140,113 @@
             .section-title { font-size: 1.6rem; }
             .objectives-grid, .activities-grid { grid-template-columns: 1fr; }
         }
+
+/* --- INICIO CÓDIGO CSS PARA DIAGRAMA DE GANTT (VERSIÓN DARK MODE) --- */
+    .gantt-wrapper {
+        overflow-x: auto;
+        padding: 1rem 0.5rem 1rem 1rem;
+        background-color: #2d3748;
+        background-image: 
+            linear-gradient(to right, #4a5568 1px, transparent 1px),
+            linear-gradient(to bottom, #4a5568 1px, transparent 1px);
+        background-size: 60px 40px;
+        border-radius: 16px;
+        border: 1px solid var(--glass-border);
+    }
+
+    .gantt-chart-container {
+        display: grid;
+        grid-template-columns: 200px repeat(16, 60px); 
+        grid-template-rows: 40px 40px repeat(16, 40px);
+        min-width: 1110px;
+        position: relative;
+    }
+    
+    .gantt-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        color: var(--text-medium);
+        font-size: 0.9rem;
+    }
+
+    .gantt-year-header {
+        border-bottom: 2px solid #718096;
+        font-weight: bold;
+    }
+    
+    /* --- ✅ NUEVO CSS PARA LA LÍNEA DE PROGRESO --- */
+    .gantt-progress-line {
+        /* Se coloca en la línea de la cuadrícula, no ocupa una celda completa */
+        width: 3px;
+        background-color: #f87171; /* Rojo brillante para destacar */
+        border-radius: 2px;
+        /* Asegura que la línea esté por encima de las barras de tareas */
+        z-index: 10;
+        /* Alinear la línea al inicio de la celda de la cuadrícula */
+        justify-self: start;
+        /* Necesario para posicionar la etiqueta "Ahora" */
+        position: relative; 
+    }
+
+    .gantt-progress-line::before {
+        content: 'Ahora';
+        position: absolute;
+        top: -30px; /* Coloca la etiqueta en la fila de los trimestres */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #f87171;
+        color: #ffffff;
+        padding: 2px 8px;
+        border-radius: 12px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .gantt-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #1a202c;
+        border-radius: 8px;
+        padding: 0 8px;
+        overflow: hidden;
+        white-space: nowrap;
+        grid-row-start: var(--row-start);
+        grid-row-end: var(--row-end);
+        grid-column-start: var(--col-start);
+        grid-column-end: var(--col-end);
+        margin: 4px;
+    }
+
+    .gantt-label {
+        background: transparent;
+        color: var(--text-medium);
+        justify-content: flex-start;
+        text-align: left;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
+    .gantt-marker {
+        background-color: #4a5568;
+        color: var(--text-light);
+        border-radius: 6px;
+        font-size: 0.9rem;
+    }
+
+    /* Colores de las tareas */
+    .task-green { background-color: #a3e635; }
+    .task-yellow { background-color: #fde047; }
+    .task-cyan { background-color: #67e8f9; }
+    .task-pink { background-color: #f9a8d4; }
+    .task-purple { background-color: #c4b5fd; }
+    .task-peach { background-color: #fed7aa; }
+    .task-lightpink { background-color: #fecaca; }
     </style>
 </head>
 <body>
@@ -178,7 +285,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <!-- <section class="section">
             <h2 class="section-title">📅 Cronograma del Proyecto</h2>
             <div class="timeline-container glass-card">
                 <div class="timeline-item">
@@ -211,8 +318,114 @@
 
             </div>
         
-        </section>
+        </section> -->
 
+<section class="section">
+    <h2 class="section-title">📅 Cronograma del Proyecto</h2>
+    <div class="gantt-wrapper">
+        <div class="gantt-chart-container">
+            <!-- HEADER DE AÑOS -->
+            <div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 2 / 6;">Fin 2024 - 2025</div>
+            <div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 6 / 10;">2026</div>
+            <div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 10 / 14;">2027</div>
+            <div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 14 / 18;">2028</div>
+
+            <!-- HEADER DE TRIMESTRES -->
+            <div class="gantt-header" style="grid-row: 2; grid-column: 2;">T1</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 3;">T2</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 4;">T3</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 5;">T4</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 6;">T1</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 7;">T2</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 8;">T3</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 9;">T4</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 10;">T1</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 11;">T2</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 12;">T3</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 13;">T4</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 14;">T1</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 15;">T2</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 16;">T3</div>
+            <div class="gantt-header" style="grid-row: 2; grid-column: 17;">T4</div>
+            
+            <!-- ✅ LÍNEA DE PROGRESO ACTUAL -->
+            <!-- Colocada en la columna 4 (inicio de T2 2025) y abarca de la fila 3 a la 18 (todas las filas de contenido) -->
+            <div class="gantt-progress-line" style="grid-column-start: 3; grid-row: 3 / 19;"></div>
+
+            <!-- FILA 3 (Antes 2) -->
+            <div class="gantt-item gantt-label" style="--row-start: 3;">Ciclo fenológico A. Palmeri</div>
+            <div class="gantt-item task-green" style="--row-start: 3; --col-start: 3; --col-end: 6;"></div>
+            <div class="gantt-item task-green" style="--row-start: 3; --col-start: 7; --col-end: 10;"></div>
+            <div class="gantt-item task-green" style="--row-start: 3; --col-start: 11; --col-end: 14;"></div>
+            <div class="gantt-item task-green" style="--row-start: 3; --col-start: 15; --col-end: 18;"></div>
+            <!-- FILA 4 (Antes 3) -->
+            <div class="gantt-item gantt-marker" style="--row-start: 4; --col-start: 1; --col-end: 2;">O.1</div>
+            <div class="gantt-item task-yellow" style="--row-start: 4; --col-start: 2; --col-end: 15;"></div>
+            <!-- FILA 5 (Antes 4) -->
+            <div class="gantt-item gantt-marker" style="--row-start: 5; --col-start: 1; --col-end: 2;">O.2</div>
+            <div class="gantt-item task-cyan" style="--row-start: 5; --col-start: 3; --col-end: 15;"></div>
+            <!-- FILA 6 (Antes 5) -->
+            <div class="gantt-item gantt-marker" style="--row-start: 6; --col-start: 1; --col-end: 2;">O.3</div>
+            <div class="gantt-item task-cyan" style="--row-start: 6; --col-start: 7; --col-end: 18;"></div>
+            <!-- FILA 7 (Antes 6) -->
+            <div class="gantt-item gantt-marker" style="--row-start: 7; --col-start: 1; --col-end: 2;">O.4</div>
+            <div class="gantt-item task-pink" style="--row-start: 7; --col-start: 7; --col-end: 18;"></div>
+            <!-- FILA 8 (Antes 7) -->
+            <div class="gantt-item gantt-label" style="--row-start: 8; --col-start: 1; ">Form. Dig. Cursos IA</div>
+            <div class="gantt-item task-purple" style="--row-start: 8; --col-start: 2; --col-end: 3;">ML/DL</div>
+            <div class="gantt-item task-purple" style="--row-start: 8; --col-start: 3; --col-end: 4;">IA Dev</div>
+            <div class="gantt-item task-purple" style="--row-start: 8; --col-start: 11; --col-end: 12;">IAG</div>
+            <div class="gantt-item task-purple" style="--row-start: 8; --col-start: 12; --col-end: 13;">Data E.</div>
+            <div class="gantt-item task-purple" style="--row-start: 8; --col-start: 13; --col-end: 14;">MLOps</div>
+            <!-- FILA 9 (Antes 8) -->
+            <div class="gantt-item gantt-label" style="--row-start: 9; --col-start: 1; justify-content: flex-end;">Form. Dig. Máster IA </div>
+            <div class="gantt-item task-purple" style="--row-start: 9; --col-start: 4; --col-end: 12;"></div>
+            <!-- FILA 10 (Antes 9) -->
+            <div class="gantt-item gantt-label" style="--row-start: 10; --col-start: 1; justify-content: flex-end;">Form. Dig. Teledetec-GIS </div>
+            <div class="gantt-item task-purple" style="--row-start: 10; --col-start: 8; --col-end: 9;">Tel. UIMP</div>
+            <div class="gantt-item task-purple" style="--row-start: 10; --col-start: 9; --col-end: 10;">Exp. SIG</div>
+            <div class="gantt-item task-purple" style="--row-start: 10; --col-start: 10; --col-end: 11;">Tel. Aplic.</div>
+            <div class="gantt-item task-purple" style="--row-start: 10; --col-start: 11; --col-end: 12;">Tel. y SIG</div>
+            <!-- FILA 11 (Antes 10) -->
+            <div class="gantt-item gantt-label" style="--row-start: 11; --col-start: 1; justify-content: flex-end;">Form. Dig. Dev App</div>
+            <div class="gantt-item task-peach" style="--row-start: 11; --col-start: 14; --col-end: 15;"></div>
+            <!-- FILA 12 (Antes 11) -->
+            <div class="gantt-item gantt-label" style="--row-start: 12; --col-start: 1; justify-content: flex-end;">Form. Comp. CITA</div>
+            <div class="gantt-item task-peach" style="--row-start: 12; --col-start: 5; --col-end: 6;"></div>
+            <div class="gantt-item task-peach" style="--row-start: 12; --col-start: 7; --col-end: 8;"></div>
+            <!-- FILA 13 (Antes 12) -->
+            <div class="gantt-item gantt-label" style="--row-start: 13; --col-start: 1; justify-content: flex-end;">Form. Comp. Lleida</div>
+            <div class="gantt-item task-peach" style="--row-start: 13; --col-start: 6; --col-end: 7;"></div>
+            <!-- FILA 14 (Antes 13) -->
+            <div class="gantt-item gantt-label" style="--row-start: 14; --col-start: 1; justify-content: flex-end;">Form. Comp. Inglés</div>
+            <div class="gantt-item task-peach" style="--row-start: 14; --col-start: 2; --col-end: 3;"></div>
+            <!-- FILA 15 (Antes 14) -->
+            <div class="gantt-item gantt-label" style="--row-start: 15; --col-start: 1; justify-content: flex-end;">Form. Comp. Congresos y Sem.</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 2; --col-end: 3;">CSIC</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 3; --col-end: 4;">EWRS</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 4; --col-end: 9;">CSIC</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 9; --col-end: 10;">SEMH</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 10; --col-end: 11;">CSIC</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 11; --col-end: 12;">ECPA</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 12; --col-end: 15;">CSIC</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 15; --col-end: 16;">AgEng</div>
+            <div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 16; --col-end: 18;">CSIC</div>
+            <!-- FILA 16 (Antes 15) -->
+            <div class="gantt-item gantt-label" style="--row-start: 16; --col-start: 1; justify-content: flex-end;">Estancias</div>
+            <div class="gantt-item task-purple" style="--row-start: 16; --col-start: 7; --col-end: 8;">CAAI4SA</div>
+            <div class="gantt-item task-purple" style="--row-start: 16; --col-start: 11; --col-end: 12;">UCO</div>
+            <div class="gantt-item task-purple" style="--row-start: 16; --col-start: 14; --col-end: 15;">AgroTIC</div>
+            <!-- FILA 17 (Antes 16) -->
+            <div class="gantt-item gantt-label" style="--row-start: 17; --col-start: 1; justify-content: flex-end;">Memorias</div>
+            <div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 5; --col-end: 6;"></div>
+            <div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 8; --col-end: 9;"></div>
+            <div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 12; --col-end: 13;"></div>
+            <div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 17; --col-end: 18;"></div>
+            
+        </div>
+    </div>
+</section>
+<!-- --- FIN CÓDIGO HTML DE LA SECCIÓN CRONOGRAMA (VERSIÓN DARK MODE) --- -->
         <section class="section">
             <h2 class="section-title">🌟 Impacto Esperado</h2>
             <div class="impact-card glass-card">

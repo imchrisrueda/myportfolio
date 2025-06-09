@@ -76,7 +76,6 @@
         .accordion-content ul { list-style-type: '✔ '; padding-left: 1rem; }
         .accordion-content li { margin-bottom: 0.5rem; color: var(--text-medium); }
 
-        /* --- NUEVOS ESTILOS PARA LA DIAPOSITIVA DE CONCEPTO --- */
         .concept-layout { display: flex; align-items: center; gap: 3rem; }
         .concept-image-wrapper { flex: 1; text-align: center; }
         .concept-image { max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
@@ -84,11 +83,36 @@
         .concept-text-wrapper h2 { text-align: left; }
         .concept-text-wrapper p { font-size: 1.3rem; line-height: 1.7; color: var(--text-medium); }
         
-        /* Navegación de Diapositivas */
         .slide-nav { position: fixed; right: 2rem; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 1rem; }
         .slide-nav-dot { width: 12px; height: 12px; background-color: var(--glass-border); border-radius: 50%; cursor: pointer; transition: all 0.3s ease; }
         .slide-nav-dot:hover { background-color: var(--text-medium); }
         .slide-nav-dot.active { background-color: var(--color-primary); transform: scale(1.4); }
+
+        /* ESTILOS CRONOGRAMA */
+        .gantt-wrapper { overflow-x: auto; padding: 1rem; background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 24px; background-image: linear-gradient(to right, var(--glass-border) 1px, transparent 1px), linear-gradient(to bottom, var(--glass-border) 1px, transparent 1px); background-size: 60px 40px; }
+        .gantt-chart-container { display: grid; grid-template-columns: 150px repeat(16, 60px); grid-template-rows: 40px 40px repeat(16, 40px); min-width: 1110px; position: relative; }
+        .gantt-header { display: flex; align-items: center; justify-content: center; font-weight: 600; color: var(--text-medium); font-size: 0.9rem; }
+        .gantt-year-header { border-bottom: 2px solid var(--glass-border); font-weight: bold; }
+        .gantt-progress-line { width: 3px; background-color: #ef4444; border-radius: 2px; z-index: 10; justify-self: start; position: relative; }
+        .gantt-progress-line::before { content: 'Ahora'; position: absolute; top: -30px; left: 50%; transform: translateX(-50%); background-color: #ef4444; color: var(--text-light); padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; white-space: nowrap; }
+        .gantt-item { display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: bold; color: #0f172a; border-radius: 8px; padding: 0 8px; overflow: hidden; white-space: nowrap; grid-row-start: var(--row-start); grid-row-end: var(--row-end); grid-column-start: var(--col-start); grid-column-end: var(--col-end); margin: 4px; }
+        .gantt-label { background: transparent; color: var(--text-medium); justify-content: flex-start; text-align: left; white-space: normal; line-height: 1.2; }
+        .gantt-marker { background-color: #4a5568; color: var(--text-light); border-radius: 6px; font-size: 0.9rem; }
+        .task-green { background-color: var(--color-primary); }
+        .task-yellow { background-color: var(--color-accent4); }
+        .task-cyan { background-color: var(--color-accent3); }
+        .task-pink { background-color: #ec4899; }
+        .task-purple { background-color: var(--color-accent2); }
+        .task-peach { background-color: #fb923c; }
+        .task-lightpink { background-color: #f472b6; }
+        
+        /* ✅ ESTILOS PARA DIAPOSITIVA DE AGRADECIMIENTO */
+        .contact-info { display: flex; justify-content: center; gap: 2.5rem; margin-top: 2rem; flex-wrap: wrap; }
+        .contact-item { display: flex; align-items: center; gap: 0.75rem; }
+        .contact-icon { font-size: 1.5rem; color: var(--color-primary); }
+        .contact-item a { color: var(--text-medium); text-decoration: none; font-weight: 500; font-size: 1.1rem; transition: color 0.3s ease; }
+        .contact-item a:hover { color: var(--text-light); }
+        .closing-statement { font-size: 2rem; margin-top: 2.5rem; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
         @media (max-width: 900px) {
             .concept-layout { flex-direction: column; }
@@ -98,6 +122,7 @@
             h1 { font-size: 2.5rem; }
             h2 { font-size: 1.8rem; }
             .grid { grid-template-columns: 1fr; }
+            .contact-info { flex-direction: column; gap: 1.5rem; }
         }
     </style>
 </head>
@@ -111,6 +136,12 @@
                 <img src="assets/img/digitalweeds_logo_svg.png" alt="Logo de DigitalWeeds" class="logo">
                 <h1>DigitalWeeds</h1>
                 <p class="subtitle">Nuevas herramientas digitales para el control eficiente de malas hierbas invasoras</p>
+                <p class="subtitle"> </p>
+
+                <p class="subtitle">Christian Rueda-Ayala (Contratado Momentum)</p>
+                <p class="subtitle">Ana de Castro (IP del Proyecto)</p>
+
+
             </div>
         </section>
 
@@ -127,14 +158,11 @@
             </div>
         </section>
 
-        <!-- ====================================================== -->
-        <!-- NUEVA SLIDE 3: CONCEPTO VISUAL -->
-        <!-- ====================================================== -->
+        <!-- Slide 3: Concepto Visual -->
         <section class="slide" id="slide-concept">
             <div class="slide-content">
                 <div class="concept-layout">
                     <div class="concept-image-wrapper">
-                        <!-- CAMBIA ESTA IMAGEN POR LA TUYA -->
                         <img src="assets/img/digitalweeds_concept_2.png" alt="Imagen conceptual del proyecto DigitalWeeds" class="concept-image">
                     </div>
                     <div class="concept-text-wrapper">
@@ -195,6 +223,46 @@
                 <div id="complementaria-accordion" class="glass-card"></div>
             </div>
         </section>
+
+        <!-- Slide 9: Cronograma -->
+        <section class="slide" id="slide-cronograma">
+            <div class="slide-content">
+                <h2>📅 Cronograma del Proyecto</h2>
+                <div class="gantt-wrapper">
+                    <div class="gantt-chart-container">
+                        <!-- HEADER DE AÑOS --><div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 2 / 6;">Fin 2024 - 2025</div><div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 6 / 10;">2026</div><div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 10 / 14;">2027</div><div class="gantt-header gantt-year-header" style="grid-row: 1; grid-column: 14 / 18;">2028</div>
+                        <!-- HEADER DE TRIMESTRES --><div class="gantt-header" style="grid-row: 2; grid-column: 2;">T1</div><div class="gantt-header" style="grid-row: 2; grid-column: 3;">T2</div><div class="gantt-header" style="grid-row: 2; grid-column: 4;">T3</div><div class="gantt-header" style="grid-row: 2; grid-column: 5;">T4</div><div class="gantt-header" style="grid-row: 2; grid-column: 6;">T1</div><div class="gantt-header" style="grid-row: 2; grid-column: 7;">T2</div><div class="gantt-header" style="grid-row: 2; grid-column: 8;">T3</div><div class="gantt-header" style="grid-row: 2; grid-column: 9;">T4</div><div class="gantt-header" style="grid-row: 2; grid-column: 10;">T1</div><div class="gantt-header" style="grid-row: 2; grid-column: 11;">T2</div><div class="gantt-header" style="grid-row: 2; grid-column: 12;">T3</div><div class="gantt-header" style="grid-row: 2; grid-column: 13;">T4</div><div class="gantt-header" style="grid-row: 2; grid-column: 14;">T1</div><div class="gantt-header" style="grid-row: 2; grid-column: 15;">T2</div><div class="gantt-header" style="grid-row: 2; grid-column: 16;">T3</div><div class="gantt-header" style="grid-row: 2; grid-column: 17;">T4</div>
+                        <!-- LÍNEA DE PROGRESO ACTUAL --><div class="gantt-progress-line" style="grid-column-start: 4; grid-row: 3 / 19;"></div>
+                        <!-- FILAS DE CONTENIDO --><div class="gantt-item gantt-label" style="--row-start: 3;">Ciclo fenológico A. Palmeri</div><div class="gantt-item task-green" style="--row-start: 3; --col-start: 3; --col-end: 6;"></div><div class="gantt-item task-green" style="--row-start: 3; --col-start: 7; --col-end: 10;"></div><div class="gantt-item task-green" style="--row-start: 3; --col-start: 11; --col-end: 14;"></div><div class="gantt-item task-green" style="--row-start: 3; --col-start: 15; --col-end: 18;"></div><div class="gantt-item gantt-marker" style="--row-start: 4; --col-start: 1; --col-end: 2;">O.1</div><div class="gantt-item task-yellow" style="--row-start: 4; --col-start: 2; --col-end: 15;"></div><div class="gantt-item gantt-marker" style="--row-start: 5; --col-start: 1; --col-end: 2;">O.2</div><div class="gantt-item task-cyan" style="--row-start: 5; --col-start: 3; --col-end: 15;"></div><div class="gantt-item gantt-marker" style="--row-start: 6; --col-start: 1; --col-end: 2;">O.3</div><div class="gantt-item task-cyan" style="--row-start: 6; --col-start: 7; --col-end: 18;"></div><div class="gantt-item gantt-marker" style="--row-start: 7; --col-start: 1; --col-end: 2;">O.4</div><div class="gantt-item task-pink" style="--row-start: 7; --col-start: 7; --col-end: 18;"></div><div class="gantt-item gantt-label" style="--row-start: 8;">Form. Dig. Cursos IA</div><div class="gantt-item task-purple" style="--row-start: 8; --col-start: 2; --col-end: 3;">ML/DL</div><div class="gantt-item task-purple" style="--row-start: 8; --col-start: 3; --col-end: 4;">IA Dev</div><div class="gantt-item task-purple" style="--row-start: 8; --col-start: 11; --col-end: 12;">IAG</div><div class="gantt-item task-purple" style="--row-start: 8; --col-start: 12; --col-end: 13;">Data E.</div><div class="gantt-item task-purple" style="--row-start: 8; --col-start: 13; --col-end: 14;">MLOps</div><div class="gantt-item gantt-label" style="--row-start: 9; justify-content: flex-end;">Form. Dig. Máster IA </div><div class="gantt-item task-purple" style="--row-start: 9; --col-start: 4; --col-end: 12;"></div><div class="gantt-item gantt-label" style="--row-start: 10; justify-content: flex-end;">Form. Dig. Teledetec-GIS </div><div class="gantt-item task-purple" style="--row-start: 10; --col-start: 8; --col-end: 9;">Tel. UIMP</div><div class="gantt-item task-purple" style="--row-start: 10; --col-start: 9; --col-end: 10;">Exp. SIG</div><div class="gantt-item task-purple" style="--row-start: 10; --col-start: 10; --col-end: 11;">Tel. Aplic.</div><div class="gantt-item task-purple" style="--row-start: 10; --col-start: 11; --col-end: 12;">Tel. y SIG</div><div class="gantt-item gantt-label" style="--row-start: 11; justify-content: flex-end;">Form. Dig. Dev App</div><div class="gantt-item task-peach" style="--row-start: 11; --col-start: 14; --col-end: 15;"></div><div class="gantt-item gantt-label" style="--row-start: 12; justify-content: flex-end;">Form. Comp. CITA</div><div class="gantt-item task-peach" style="--row-start: 12; --col-start: 5; --col-end: 6;"></div><div class="gantt-item task-peach" style="--row-start: 12; --col-start: 7; --col-end: 8;"></div><div class="gantt-item gantt-label" style="--row-start: 13; justify-content: flex-end;">Form. Comp. Lleida</div><div class="gantt-item task-peach" style="--row-start: 13; --col-start: 6; --col-end: 7;"></div><div class="gantt-item gantt-label" style="--row-start: 14; justify-content: flex-end;">Form. Comp. Inglés</div><div class="gantt-item task-peach" style="--row-start: 14; --col-start: 2; --col-end: 3;"></div><div class="gantt-item gantt-label" style="--row-start: 15; justify-content: flex-end;">Form. Comp. Congresos y Sem.</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 2; --col-end: 3;">CSIC</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 3; --col-end: 4;">EWRS</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 4; --col-end: 9;">CSIC</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 9; --col-end: 10;">SEMH</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 10; --col-end: 11;">CSIC</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 11; --col-end: 12;">ECPA</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 12; --col-end: 15;">CSIC</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 15; --col-end: 16;">AgEng</div><div class="gantt-item task-lightpink" style="--row-start: 15; --col-start: 16; --col-end: 18;">CSIC</div><div class="gantt-item gantt-label" style="--row-start: 16; justify-content: flex-end;">Estancias</div><div class="gantt-item task-purple" style="--row-start: 16; --col-start: 7; --col-end: 8;">CAAI4SA</div><div class="gantt-item task-purple" style="--row-start: 16; --col-start: 11; --col-end: 12;">UCO</div><div class="gantt-item task-purple" style="--row-start: 16; --col-start: 14; --col-end: 15;">AgroTIC</div><div class="gantt-item gantt-label" style="--row-start: 17; justify-content: flex-end;">Memorias</div><div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 5; --col-end: 6;"></div><div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 8; --col-end: 9;"></div><div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 12; --col-end: 13;"></div><div class="gantt-item task-yellow" style="--row-start: 17; --col-start: 17; --col-end: 18;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--  Slide 10: Agradecimiento -->
+        <section class="slide" id="slide-thanks">
+            <div class="slide-content">
+                <h2>¡Gracias!</h2>
+                <div class="glass-card" style="text-align: center;">
+                    <p class="subtitle" style="font-size: 1.2rem; max-width: 100%; margin-bottom: 2rem;">
+                        Agradecemos su tiempo y atención. 
+                    </p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <a href="mailto:digitalweeds@csic.es">digitalweeds@csic.es</a>
+                            <a href="christian.rueda@csic.es">christian.rueda@csic.es</a>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">🌐</span>
+                            <a href="www.digitalweeds.csic.es" target="_blank">www.digitalweeds.csic.es</a>
+                        </div>
+                    </div>
+                    <h3 class="closing-statement">¿Preguntas?</h3>
+                </div>
+            </div>
+        </section>
+        
     </div>
     
     <nav class="slide-nav" id="slide-nav"></nav>
